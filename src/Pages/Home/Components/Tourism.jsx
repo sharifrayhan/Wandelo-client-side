@@ -54,22 +54,22 @@ const Tourism = () => {
             <div className="flex items-center justify-center flex-wrap gap-4">
               {/* Example Tour Guide 1 */}
               <div className="bg-white p-4 rounded-md shadow-md">
-                <img src="https://via.placeholder.com/150" alt="Tour Guide 1" className="mb-2 rounded-full" />
-                <h3 className="text-lg font-semibold">Tour Guide Name 1</h3>
+                <img src="https://i.ibb.co/5nV25Bf/Nevaan-Ahmed.png" alt="Tour Guide 1" className="mb-2 h-[200px] rounded-full" />
+                <h3 className="text-lg font-semibold">Nevaan Ahmed</h3>
                 <p className="text-gray-500 mb-2">Experience: 5 years</p>
                 <button className="bg-blue-500 text-white px-4 py-2 rounded-md">Details</button>
               </div>
 
               <div className="bg-white p-4 rounded-md shadow-md">
-                <img src="https://via.placeholder.com/150" alt="Tour Guide 1" className="mb-2 rounded-full" />
-                <h3 className="text-lg font-semibold">Tour Guide Name 1</h3>
+                <img src="https://i.ibb.co/kgd3kHv/Preyota-Jannam.png" alt="Tour Guide 2" className="mb-2 h-[200px] rounded-full" />
+                <h3 className="text-lg font-semibold">Preyota Jannam</h3>
                 <p className="text-gray-500 mb-2">Experience: 5 years</p>
                 <button className="bg-blue-500 text-white px-4 py-2 rounded-md">Details</button>
               </div>
 
               <div className="bg-white p-4 rounded-md shadow-md">
-                <img src="https://via.placeholder.com/150" alt="Tour Guide 1" className="mb-2 rounded-full" />
-                <h3 className="text-lg font-semibold">Tour Guide Name 1</h3>
+                <img src="https://i.ibb.co/zr0wwMd/Umong-Jai.png" alt="Tour Guide 3" className="mb-2 h-[200px] rounded-full" />
+                <h3 className="text-lg font-semibold">Umong-Jai</h3>
                 <p className="text-gray-500 mb-2">Experience: 5 years</p>
                 <button className="bg-blue-500 text-white px-4 py-2 rounded-md">Details</button>
               </div>
@@ -80,14 +80,14 @@ const Tourism = () => {
   );
 
   return (
-    <center>
+    <center className='my-3'>
       <div>
           <h1 className="text-4xl font-bold mb-6">Tourism and Travel Guides</h1>
         <Tabs>
           <TabList>
             <Tab>Overview</Tab>
             <Tab>Our Packages</Tab>
-            <Tab>Meet Our Tour Guides</Tab>
+            <Tab>Our Tour Guides</Tab>
           </TabList>
 
           <TabPanel>{overviewContent}</TabPanel>
