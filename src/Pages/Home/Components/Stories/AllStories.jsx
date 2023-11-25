@@ -1,6 +1,6 @@
 
 
-const Register = () => {
+const AllStories = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default AllStories;
