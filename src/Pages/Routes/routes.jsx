@@ -6,6 +6,8 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import AllStories from "../Home/Components/Stories/AllStories";
 import StoryDetails from "../Home/Components/Stories/StoryDetails";
+import AllPackages from "../../Packages/AllPackages";
+import PackageDetails from "../../Packages/PackageDetails";
 
 
 const router = createBrowserRouter([
@@ -33,6 +35,14 @@ const router = createBrowserRouter([
         {
           path: "/StoryDetails/:id",
           element: <StoryDetails></StoryDetails>,
+        },
+        {
+          path: "/AllPackages",
+          element: <AllPackages></AllPackages>
+        },
+        {
+          path: "/PackageDetails/:id",
+          element: <PackageDetails></PackageDetails>
         },
       ],
     }, 

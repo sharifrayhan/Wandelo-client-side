@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css'; // Import the styles
 
@@ -41,7 +42,7 @@ const Tourism = () => {
               </div>
 
             </div>
-            <button className="bg-blue-500 text-white px-4 py-2 rounded-md">View All Packages</button>
+            <Link to='/AllPackages'><button className="bg-blue-500 text-white px-4 py-2 rounded-md">View All Packages</button></Link>
           </div>
       </center>
   );
