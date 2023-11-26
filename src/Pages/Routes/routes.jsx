@@ -8,6 +8,8 @@ import AllStories from "../Home/Components/Stories/AllStories";
 import StoryDetails from "../Home/Components/Stories/StoryDetails";
 import AllPackages from "../../Packages/AllPackages";
 import PackageDetails from "../../Packages/PackageDetails";
+import Guides from "../Guides/Guides";
+import GuideDetails from "../Guides/GuideDetails";
 
 
 const router = createBrowserRouter([
@@ -41,8 +43,16 @@ const router = createBrowserRouter([
           element: <AllPackages></AllPackages>
         },
         {
-          path: "/PackageDetails/:id",
+          path: "/PackageDetails/:_id",
           element: <PackageDetails></PackageDetails>
+        },
+        {
+          path: "/Guides",
+          element: <Guides></Guides>
+        },
+        {
+          path: "/Guide/:_id",
+          element: <GuideDetails></GuideDetails>
         },
       ],
     }, 

@@ -1,29 +1,17 @@
-import { useQuery } from "@tanstack/react-query";
 import PackageCard from "./PackageCard";
 import Navbar from "../Pages/Home/Components/Navbar";
+import usePackages from "./Hook/usePackages";
 
 const AllPackages = () => {
 
-    const { data: allPackages, isLoading, error } = useQuery(
-        {
-            queryFn: async () => {
-                const response = await fetch('http://localhost:3000/packages');
-                const data = await response.json();
-                return data;
-            },
-            queryKey: ['packages']
-        })
+    const { allPackages, isLoading, error } = usePackages();
 
-        if (error) {
-            return 'An error has occurred: ' + error.message
-        } 
-
-    console.log(allPackages)
-
-    if (isLoading)
-    {
-        return <div>...Data Loading</div>
-        
+    if (error) {
+      return 'An error has occurred: ' + error.message;
+    }
+  
+    if (isLoading) {
+      return <div>...Data Loading</div>;
     }
 
     return (
