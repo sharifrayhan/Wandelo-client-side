@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 import app from '../Firebase/firebase.config'
-import { createUserWithEmailAndPassword, getAuth , onAuthStateChanged, updateProfile} from "firebase/auth"
+import { createUserWithEmailAndPassword, getAuth , onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile} from "firebase/auth"
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
@@ -29,13 +29,18 @@ const AllContext = ({children}) => {
   
     // }
 
-
+// User Creation
     const createUser = (email,password) => {
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
+// User login
 
+const signIn = (email,password) => {
+    setLoading(true)
+    return signInWithEmailAndPassword(auth, email, password)
+}
 
 
 //   On auth State Changed Activities
@@ -67,10 +72,19 @@ const AllContext = ({children}) => {
 },[user?.email])
 
 
+  // create log out method
+    
+  const logOut = () => {
+    return signOut(auth);
+}
+
     const send = {
         createUser,
         updateProfile,
-        loading
+        loading,
+        signIn,
+        user,
+        logOut
     }
 
     return (

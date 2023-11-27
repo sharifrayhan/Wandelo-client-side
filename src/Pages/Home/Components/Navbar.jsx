@@ -1,16 +1,33 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Context } from '../../../Context/AllContext';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = () => {
   const [dropdownOpenTwo, setDropdownOpenTwo] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const {user, logOut} = useContext(Context)
+
+  const notify = () => toast('Logged out user');
+
+  const userName = user?.displayName;
+  const userPhoto = user?.photoURL;
+  const userEmail = user?.email;
+
   const toggleDropdownTwo = () => {
     setDropdownOpenTwo(!dropdownOpenTwo);
   };
 
-  const closeDropdownTwo = () => {
+  const handleLogOut = () => {
+    logOut()
+    notify()
     setDropdownOpenTwo(false);
+  };
+
+  const closeDropdownTwo = () => {
+    setDropdownOpenTwo(true);
   };
 
   const toggleMenu = () => {
@@ -21,13 +38,17 @@ const Navbar = () => {
     setMenuOpen(false);
   };
 
-  const user = true;
-  const userName = 'Sharif Rayhan Nafi';
-  const userPhoto = 'https://i.ibb.co/fHK6scY/ryan.jpg';
-  const userEmail = 'sharif@example.com';
+
+
+  // const user = true;
+  // const userName = 'Sharif Rayhan Nafi';
+  // const userPhoto = 'https://i.ibb.co/fHK6scY/ryan.jpg';
+  // const userEmail = 'sharif@example.com';
 
   return (
+    
     <nav className={`fixed w-full bg-transparent px-4 text-white py-3 transition-all duration-300 ease-in-out`}>
+        <ToastContainer/>
       <div className="flex flex-col md:flex-row lg:flex-row items-center justify-between mx-11">
 
         {/* Company Logo */}
@@ -76,16 +97,15 @@ const Navbar = () => {
               <img className="w-5 h-5 md:w-8 md:h-8 lg:w-9 lg:h-9 rounded-full" src={userPhoto} alt="" />
               {/* Dropdown Content */}
               {dropdownOpenTwo && (
-                <div className="absolute w-[150px] z-10 top-full mt-1 py-2 bg-white text-gray-800 shadow-md rounded-lg">
+                <div className="absolute w-[150px] z-10 top-full mt-1 -ml-[115px] py-2 bg-white text-gray-800 shadow-md rounded-lg">
                   <h1 className="block px-4 py-2 text-sm">{userName}</h1>
                   <p className="block px-4 py-2 text-xs">{userEmail}</p>
                   <Link to="/dashboard" className="block px-4 py-2 text-sm hover:bg-[#EF5C2B]" onClick={closeDropdownTwo}>
                     Dashboard
                   </Link>
                   <button
-                    // onClick={handleLogOut}
-                    onClick={closeDropdownTwo}
-                    className="block px-4 py-2 text-sm hover:bg-[#EF5C2B]"
+                    onClick={handleLogOut}
+                    className=" px-4 py-2 text-sm hover:bg-[#EF5C2B]"
                   >
                     Log Out
                   </button>

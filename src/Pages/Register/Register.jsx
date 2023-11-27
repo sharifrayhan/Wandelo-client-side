@@ -1,49 +1,77 @@
 import { useForm } from 'react-hook-form';
 import Navbar from '../Home/Components/Navbar';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { Context } from '../../Context/AllContext';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useAxiosSecure from '../../Axios/useAxiosSecure'
 
 const Register = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    watch,
-  } = useForm();
+    const {
+      register,
+      handleSubmit,
+      formState: { errors },
+      watch,
+    } = useForm();
+  
+    const axiosSecure = useAxiosSecure();
 
-  const { createUser, updateProfile } = useContext(Context);
-
-  const navigate = useNavigate();
-
-  const onSubmit = (data) => {
-    const name = data.name;
-    const email = data.email;
-    const password = data.password;
-    const url = data.photo;
-    const desiredRole = data.desiredRole;
-
-    createUser(email, password)
-      .then((result) => {
-        updateProfile(result.user, {
-          displayName: name,
-          photoURL: url,
-        });
-        if (desiredRole === 'guide') {
-          toast.info('Your registration as a guide is pending admin approval.');
-        }
-        toast.info('Please Login to Continue');
-        navigate('/Login');
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+    // Toasts
+    const notifyRoleApproval = () => toast('Your registration as a guide is pending admin approval.',);
+    const notifyToLogin = () => toast('Please Login to Continue',);
+    const notifyServerInput = () => toast('Your info is saved on server',);
+  
+    const { createUser, updateProfile, logOut } = useContext(Context);
+  
+    const navigate = useNavigate();
+  
+    const onSubmit = (data) => {
+        const name = data.name;
+        const email = data.email;
+        const password = data.password;
+        const url = data.photo;
+        const desiredRole = data.desiredRole;
+      
+        createUser(email, password)
+          .then((result) => {
+            updateProfile(result.user, {
+              displayName: name,
+              photoURL: url,
+            });
+      
+            const userData = {
+              name: name,
+              email: email,
+              photoURL: url,
+              desiredRole: desiredRole,
+            };
+      
+            axiosSecure.post('/users', userData)
+              .then(response => {
+                console.log('Server response:', response);
+                notifyServerInput();
+                if (desiredRole === 'guide') {
+                    notifyRoleApproval();
+                  }
+                  notifyToLogin(); 
+              })
+              .catch(error => {
+                console.error('Error posting data to server:', error);
+              });
+              
+              logOut() 
+            navigate('/Login');
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      };
+      
 
   return (
     <div className="bg-[url(https://i.ibb.co/n8rm5BH/bg-2.jpg)] bg-cover">
+        <ToastContainer/>
       <Navbar />
       <div className="flex items-center justify-center min-h-screen">
         <div className="p-8 rounded shadow-md bg-white w-full md:w-2/3 lg:w-1/2 xl:w-1/3">
@@ -178,6 +206,14 @@ const Register = () => {
                 Register
               </button>
             </div>
+            <center className=' my-3'>
+            <p className="text-black">
+              Already have an account?{' '}
+              <Link className="text-red-600" to="/Login">
+                Login
+              </Link>
+            </p>
+          </center>
           </form>
         </div>
       </div>

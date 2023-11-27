@@ -1,5 +1,8 @@
 import { useForm } from "react-hook-form";
 import Navbar from "../Home/Components/Navbar";
+import { useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Context } from "../../Context/AllContext";
 
 const Login = () => {
   const {
@@ -8,9 +11,28 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  
+  const { signIn } = useContext(Context);
+
+
   const onSubmit = (data) => {
     console.log(data);
-  };
+    const email = data.email
+    const password = data.password
+  
+      signIn(email, password, navigate, location)
+        .then(result => {
+          console.log(result.user);
+          navigate(location?.state ? location.state : "/");
+
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
 
   return (
     <div className=" bg-[url(https://i.ibb.co/n8rm5BH/bg-2.jpg)] bg-cover">
@@ -90,6 +112,14 @@ const Login = () => {
                 Login
               </button>
             </div>
+            <center>
+         <p className=" text-black ">
+           Dont have an account?
+           <Link className=" text-red-600" to="/Register">
+             Register
+           </Link>
+         </p>
+       </center>
           </form>
         </div>
       </div>
