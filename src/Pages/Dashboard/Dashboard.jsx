@@ -1,14 +1,16 @@
+import { useState } from "react";
 import Navbar from "../Home/Components/Navbar";
-import useRole from "../Users/Hook/useRole";
+import useCurrentUserInfo from "../Users/Hook/useCurrentUserInfo";
+import AdminProfile from "./Admin Content/AdminProfile";
 
 const Dashboard = () => {
-  const { userRole } = useRole();
+  const { userRole } = useCurrentUserInfo();
   const [selectedOption, setSelectedOption] = useState(null);
 
   const drawerOptions = {
-    tourist: ["My Profile", "My Bookings", "My Wishlist"],
-    guide: ["My Profile", "My Assigned Tours"],
-    admin: ["My Profile", "Add Packages", "Manage Users"],
+    tourist: ["Tourist Profile", "My Bookings", "My Wishlist"],
+    guide: ["Guide Profile", "My Assigned Tours"],
+    admin: ["Admin Profile", "Add Packages", "Manage Users"],
   };
 
   const handleOptionClick = (option) => {
@@ -17,16 +19,10 @@ const Dashboard = () => {
 
   const renderSelection = () => {
     switch (selectedOption) {
-      case "My Profile":
+      case "Admin Profile":
         return (
-<center>
-<div>
-            <h2 className="text-xl text-black">My Profile</h2>
-
-            <p className="text-xl text-black">User Role: {userRole}</p>
-
-          </div>
-</center>
+     
+                <AdminProfile></AdminProfile>
         );
       case "My Bookings":
         return (
@@ -34,7 +30,6 @@ const Dashboard = () => {
             <h2 className="text-xl text-black">My Bookings</h2>
 
             <p className="text-xl text-black">No bookings available</p>
-
           </div>
         );
 
@@ -44,27 +39,25 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="p-1">
+    <div className="p-1 bg-[#0C4848]">
       <Navbar />
-      <div className="drawer mt-[50px] lg:drawer-open">
+      <div className="drawer  mt-[60px] lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
- 
-        {selectedOption && renderSelection()}
-  
+        <div className="drawer-content flex flex-col items-center ">
+          {selectedOption && renderSelection()}
         </div>
-        <div className="drawer-side">
+        <div className="drawer-side ">
           <label
             htmlFor="my-drawer-2"
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+          <ul className="menu p-4 w-80 min-h-full rounded-lg bg-[#37666B] text-base-content">
             {drawerOptions[userRole]?.map((option, index) => (
               <li
                 key={index}
-                className={`mb-2 cursor-pointer ${
-                  selectedOption === option ? "text-primary" : ""
+                className={`mb-2 text-white cursor-pointer ${
+                  selectedOption === option ? "text-[#E1A66F]" : ""
                 }`}
                 onClick={() => handleOptionClick(option)}
               >
