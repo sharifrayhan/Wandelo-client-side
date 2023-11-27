@@ -3,6 +3,7 @@ import Navbar from "../Home/Components/Navbar";
 import useCurrentUserInfo from "../Users/Hook/useCurrentUserInfo";
 import AdminProfile from "./Admin Content/AdminProfile";
 import AddPackage from "./Admin Content/AddPackage";
+import ManageUsers from "./Admin Content/ManageUsers";
 
 const Dashboard = () => {
   const { userRole } = useCurrentUserInfo();
@@ -28,6 +29,11 @@ const Dashboard = () => {
       case "Add Packages":
         return (
             <AddPackage></AddPackage>
+        );
+
+      case "Manage Users":
+        return (
+            <ManageUsers></ManageUsers>
         );
 
       default:

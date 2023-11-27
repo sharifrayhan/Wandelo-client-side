@@ -13,8 +13,9 @@ const useCurrentUserInfo = () => {
     const currentUser = allUsers?.find((u) => u?.email === userEmail);
 
     const userRole = currentUser?.role;
+    const currentUserId = currentUser?._id;
 
-    return { userRole,userPhoto,userEmail,userName }
+    return { userRole,userPhoto,userEmail,userName,currentUserId }
 
 };
 
