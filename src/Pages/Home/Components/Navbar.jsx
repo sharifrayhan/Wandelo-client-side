@@ -47,7 +47,7 @@ const Navbar = () => {
 
   return (
     
-    <nav className={`fixed w-full bg-transparent px-4 text-white py-3 transition-all duration-300 ease-in-out`}>
+    <nav className={` w-full z-50 bg-transparent px-4 text-white py-3 transition-all duration-300 ease-in-out`}>
         <ToastContainer/>
       <div className="flex flex-col md:flex-row lg:flex-row items-center justify-between mx-11">
 
@@ -97,7 +97,7 @@ const Navbar = () => {
               <img className="w-5 h-5 md:w-8 md:h-8 lg:w-9 lg:h-9 rounded-full" src={userPhoto} alt="" />
               {/* Dropdown Content */}
               {dropdownOpenTwo && (
-                <div className="absolute w-[150px] z-10 top-full mt-1 -ml-[115px] py-2 bg-white text-gray-800 shadow-md rounded-lg">
+                <div className="absolute w-[150px] z-30 top-full mt-1 -ml-[115px] py-2 bg-white text-gray-800 shadow-md rounded-lg">
                   <h1 className="block px-4 py-2 text-sm">{userName}</h1>
                   <p className="block px-4 py-2 text-xs">{userEmail}</p>
                   <Link to="/Dashboard" className="block px-4 py-2 text-sm hover:bg-[#EF5C2B]" onClick={closeDropdownTwo}>

@@ -40,10 +40,10 @@ const PackageDetails = () => {
 
   const tourPlanDetails = () => (
     <div className="text-left mb-8">
-      {Object.keys(tourPlan).map((day, index) => (
+      {tourPlan.map((day, index) => (
         <div key={index} className="mb-4">
-          <h2 className="text-2xl font-bold mb-2">{day}</h2>
-          <p className="text-gray-700">{tourPlan[day].join(", ")}</p>
+          <h2 className="text-2xl font-bold mb-2">{day.day}</h2>
+          <p className="text-gray-700">{day.spots.join(", ")}</p>
         </div>
       ))}
     </div>
@@ -52,7 +52,7 @@ const PackageDetails = () => {
   return (
     <div className="p-1 min-h-screen bg-[#0C4848]">
       <Navbar></Navbar>
-      <div className="container mx-auto mt-[100px] bg-white p-8 rounded-md shadow-lg">
+      <div className="container z-0 mx-auto mt-[100px] bg-white p-8 rounded-md shadow-lg">
         <center>
           <h1 className="text-3xl font-bold mb-4">{tourTitle}</h1>
           <img

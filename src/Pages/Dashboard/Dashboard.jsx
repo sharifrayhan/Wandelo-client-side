@@ -2,6 +2,7 @@ import { useState } from "react";
 import Navbar from "../Home/Components/Navbar";
 import useCurrentUserInfo from "../Users/Hook/useCurrentUserInfo";
 import AdminProfile from "./Admin Content/AdminProfile";
+import AddPackage from "./Admin Content/AddPackage";
 
 const Dashboard = () => {
   const { userRole } = useCurrentUserInfo();
@@ -24,13 +25,9 @@ const Dashboard = () => {
      
                 <AdminProfile></AdminProfile>
         );
-      case "My Bookings":
+      case "Add Packages":
         return (
-          <div>
-            <h2 className="text-xl text-black">My Bookings</h2>
-
-            <p className="text-xl text-black">No bookings available</p>
-          </div>
+            <AddPackage></AddPackage>
         );
 
       default:
@@ -41,7 +38,7 @@ const Dashboard = () => {
   return (
     <div className="p-1 bg-[#0C4848]">
       <Navbar />
-      <div className="drawer  mt-[60px] lg:drawer-open">
+      <div className="drawer z-0  mt-[7px] lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center ">
           {selectedOption && renderSelection()}

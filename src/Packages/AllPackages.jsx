@@ -15,9 +15,9 @@ const AllPackages = () => {
     }
 
     return (
-        <div className="p-1">
+        <div className="p-1 bg-[#0C4848]">
             <Navbar></Navbar>
-            <div className="flex gap-3 flex-wrap px-20 mt-20 items-center">
+            <div className="flex gap-3 flex-wrap px-20 mt-10  items-center">
                     {
                         allPackages.map(singlePackage=>(
                             <PackageCard key={singlePackage.id} singlePackage={singlePackage}></PackageCard>

@@ -1,6 +1,6 @@
 const Banner = () => {
     return (
-        <div className="bg-cover flex items-center justify-between  bg-[url(https://i.ibb.co/6F6dXrc/bg.jpg)] min-h-[700px]">
+        <div className="bg-cover flex items-center justify-between -mt-[60px]  bg-[url(https://i.ibb.co/6F6dXrc/bg.jpg)] min-h-[700px]">
             <div className="p-1 px-4 md:px-12 justify-between w-[70%]  flex items-center ">
                 <div className="ml-2 flex flex-col md:gap-7 items-center">
                 <img className="h-8" src="https://i.ibb.co/NKgBCQP/fb-white.png" alt="Facebook" />
