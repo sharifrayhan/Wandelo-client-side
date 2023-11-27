@@ -50,9 +50,9 @@ const PackageDetails = () => {
   );
 
   return (
-    <div className="p-4 min-h-screen">
+    <div className="p-1 min-h-screen bg-[#0C4848]">
       <Navbar></Navbar>
-      <div className="container mx-auto mt-10 bg-white p-8 rounded-md shadow-lg">
+      <div className="container mx-auto mt-[100px] bg-white p-8 rounded-md shadow-lg">
         <center>
           <h1 className="text-3xl font-bold mb-4">{tourTitle}</h1>
           <img

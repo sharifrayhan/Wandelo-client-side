@@ -51,7 +51,7 @@ const router = createBrowserRouter([
           element: <Guides></Guides>
         },
         {
-          path: "/Guide/:_id",
+          path: "/GuideDetails/:_id",
           element: <GuideDetails></GuideDetails>
         },
       ],

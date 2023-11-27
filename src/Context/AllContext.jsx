@@ -1,9 +1,10 @@
 import { createContext } from 'react';
 import app from '../Firebase/firebase.config'
-import { getAuth , onAuthStateChanged} from "firebase/auth"
+import { createUserWithEmailAndPassword, getAuth , onAuthStateChanged, updateProfile} from "firebase/auth"
 import { useState } from 'react';
 import { useEffect } from 'react';
-import axios from "axios";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import useAxiosSecure from '../Axios/useAxiosSecure';
 
 
@@ -28,6 +29,39 @@ const AllContext = ({children}) => {
   
     // }
 
+
+    const createUser = (email,password) => {
+        setLoading(true)
+        return createUserWithEmailAndPassword(auth, email, password)
+    }
+
+    const handleRegister = (data, navigate) => {
+        const name = data.name
+        const email = data.email
+        const password = data.password
+        const url = data.photo
+        const desiredRole = data.desiredRole
+        console.log(email,password)
+        createUser(email,password)
+        .then(result=>{
+            console.log(result.user)
+            updateProfile(result.user,{
+              displayName: name,
+              photoURL: url,
+            })
+            if (desiredRole === 'guide') {
+                toast.info('Your registration as a guide is pending admin approval.');
+              }
+            toast.info('Please Login to Continue');
+            navigate('/Login')
+
+            // logOut()
+        })
+        .catch(error=>{
+            console.error(error)
+
+        })
+      }
 
 
 //   On auth State Changed Activities
@@ -60,7 +94,8 @@ const AllContext = ({children}) => {
 
 
     const send = {
-
+        handleRegister,
+        loading
     }
 
     return (

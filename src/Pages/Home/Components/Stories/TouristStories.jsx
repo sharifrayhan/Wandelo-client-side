@@ -37,7 +37,8 @@ const stories = [
 
 export const TouristStories = () => {
   return (
-    <div className="mx-auto max-w-2xl my-8">
+<div className=' '>
+<div className="mx-auto max-w-2xl my-8">
       <h2 className="text-4xl font-extrabold mb-6 text-center">Tourist Stories</h2>
       <Swiper
           spaceBetween={30}
@@ -75,6 +76,7 @@ export const TouristStories = () => {
       </Link>
 
     </div>
+</div>
   );
 };
 
