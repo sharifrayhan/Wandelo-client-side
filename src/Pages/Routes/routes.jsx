@@ -10,6 +10,7 @@ import AllPackages from "../../Packages/AllPackages";
 import PackageDetails from "../../Packages/PackageDetails";
 import Guides from "../Guides/Guides";
 import GuideDetails from "../Guides/GuideDetails";
+import Dashboard from "../Dashboard/Dashboard";
 
 
 const router = createBrowserRouter([
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
         {
           path: "/GuideDetails/:_id",
           element: <GuideDetails></GuideDetails>
+        },
+        {
+          path: "/Dashboard",
+          element: <Dashboard></Dashboard>
         },
       ],
     }, 

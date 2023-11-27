@@ -6,9 +6,9 @@ const useRole = () => {
     const { user } = useContext(Context);
     const userEmail = user?.email;
 
-    const { allUsers} = useUsers();
+    const { allUsers } = useUsers();
 
-    const currentUser = allUsers.find((u) => u.email === userEmail);
+    const currentUser = allUsers?.find((u) => u?.email === userEmail);
 
     const userRole = currentUser?.role;
 

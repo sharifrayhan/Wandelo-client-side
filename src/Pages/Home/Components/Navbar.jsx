@@ -100,7 +100,7 @@ const Navbar = () => {
                 <div className="absolute w-[150px] z-10 top-full mt-1 -ml-[115px] py-2 bg-white text-gray-800 shadow-md rounded-lg">
                   <h1 className="block px-4 py-2 text-sm">{userName}</h1>
                   <p className="block px-4 py-2 text-xs">{userEmail}</p>
-                  <Link to="/dashboard" className="block px-4 py-2 text-sm hover:bg-[#EF5C2B]" onClick={closeDropdownTwo}>
+                  <Link to="/Dashboard" className="block px-4 py-2 text-sm hover:bg-[#EF5C2B]" onClick={closeDropdownTwo}>
                     Dashboard
                   </Link>
                   <button
