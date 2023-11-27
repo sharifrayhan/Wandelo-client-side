@@ -11,9 +11,9 @@ const queryClient = new QueryClient()
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      {/* <AllContext> */}
+      <AllContext>
            <RouterProvider router={router}></RouterProvider>
-      {/* </AllContext> */}
+      </AllContext>
     </QueryClientProvider>
   </React.StrictMode>
 )

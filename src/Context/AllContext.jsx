@@ -3,9 +3,9 @@ import app from '../Firebase/firebase.config'
 import { createUserWithEmailAndPassword, getAuth , onAuthStateChanged, updateProfile} from "firebase/auth"
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import useAxiosSecure from '../Axios/useAxiosSecure';
+import axios from 'axios';
+
+// import useAxiosSecure from '../Axios/useAxiosSecure';
 
 
 export const Context = createContext(null)
@@ -17,7 +17,7 @@ const AllContext = ({children}) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
 
-    const axiosSecure = useAxiosSecure()
+    // const axiosSecure = useAxiosSecure()
 
 
 
@@ -35,33 +35,7 @@ const AllContext = ({children}) => {
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
-    const handleRegister = (data, navigate) => {
-        const name = data.name
-        const email = data.email
-        const password = data.password
-        const url = data.photo
-        const desiredRole = data.desiredRole
-        console.log(email,password)
-        createUser(email,password)
-        .then(result=>{
-            console.log(result.user)
-            updateProfile(result.user,{
-              displayName: name,
-              photoURL: url,
-            })
-            if (desiredRole === 'guide') {
-                toast.info('Your registration as a guide is pending admin approval.');
-              }
-            toast.info('Please Login to Continue');
-            navigate('/Login')
 
-            // logOut()
-        })
-        .catch(error=>{
-            console.error(error)
-
-        })
-      }
 
 
 //   On auth State Changed Activities
@@ -74,14 +48,14 @@ const AllContext = ({children}) => {
         if(currentUser){
             const loggeduserinfo = {email: userEmail}
             console.log(loggeduserinfo)
-            axiosSecure.post('/jwt',loggeduserinfo,{withCredentials: true})
+            axios.post('http://localhost:3000/jwt',loggeduserinfo,{withCredentials: true})
             .then(res=>{
                 console.log(res.data)
             })
         }
         else{
             const loggeduserinfo = {email: userEmail}
-            axiosSecure.post('/logout',loggeduserinfo,{withCredentials: true} )
+            axios.post('http://localhost:3000/logout',loggeduserinfo,{withCredentials: true} )
             .then(res=>{
                 console.log(res.data)
             })
@@ -90,11 +64,12 @@ const AllContext = ({children}) => {
     return () =>{
         unSubscribe();
     }
-},[user?.email, axiosSecure])
+},[user?.email])
 
 
     const send = {
-        handleRegister,
+        createUser,
+        updateProfile,
         loading
     }
 
