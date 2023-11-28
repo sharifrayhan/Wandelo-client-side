@@ -51,12 +51,10 @@ const signIn = (email,password) => {
     const unSubscribe = onAuthStateChanged(auth, currentUser=>{
         console.log(' on auth state activity', currentUser);
         const userEmail = currentUser?.email || user?.email;
-        const userName = currentUser?.displayName;
+        // const userName = currentUser?.displayName;
         setUser(currentUser)
         setLoading(false)
         if(currentUser){
-            const notifyLogIn = () => toast.success(`Welcome back ${userName}`);
-            notifyLogIn()
             const loggeduserinfo = {email: userEmail}
             console.log(loggeduserinfo)
             axios.post('http://localhost:3000/jwt',loggeduserinfo,{withCredentials: true})
@@ -69,10 +67,9 @@ const signIn = (email,password) => {
             axios.post('http://localhost:3000/logout',loggeduserinfo,{withCredentials: true} )
             .then(res=>{
                 console.log(res.data)
-                if(res.data.success === true){
-                    const notifyLogOut = () => toast('Logged out user');
-                    notifyLogOut()
-                }
+                // if(res.data.success === true){
+
+                // }
             })
         }
     });
@@ -97,6 +94,7 @@ const signIn = (email,password) => {
         signIn,
         user,
         logOut,
+  
     }
 
     return (

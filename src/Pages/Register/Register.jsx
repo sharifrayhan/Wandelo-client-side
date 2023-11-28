@@ -64,6 +64,8 @@ const Register = () => {
             navigate('/Login');
           })
           .catch((error) => {
+            const notifyRegisterError = () => toast.error(error.message)
+            notifyRegisterError()
             console.error(error);
           });
       };

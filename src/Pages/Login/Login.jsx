@@ -3,6 +3,9 @@ import Navbar from "../Home/Components/Navbar";
 import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Context } from "../../Context/AllContext";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+// import useCurrentUserInfo from "../Users/Hook/useCurrentUserInfo";
 
 const Login = () => {
   const {
@@ -16,6 +19,7 @@ const Login = () => {
 
   
   const { signIn } = useContext(Context);
+  // const { userName } = useCurrentUserInfo()
 
 
   const onSubmit = (data) => {
@@ -26,6 +30,8 @@ const Login = () => {
       signIn(email, password, navigate, location)
         .then(result => {
           console.log(result.user);
+          const notifyLogInSuccess = () => toast.success(`Welcome back ${result.user.displayName}`);
+          notifyLogInSuccess()
           navigate(location?.state ? location.state : "/");
 
         })
@@ -36,6 +42,7 @@ const Login = () => {
 
   return (
     <div className=" bg-[url(https://i.ibb.co/n8rm5BH/bg-2.jpg)] bg-cover">
+      <ToastContainer></ToastContainer>
       <Navbar></Navbar>
       <div className="flex items-center justify-center min-h-screen">
         <div className=" p-8 rounded shadow-md glass w-full md:w-1/2 lg:w-1/3">

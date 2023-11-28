@@ -1,13 +1,13 @@
 import useUsers from "../../Users/Hook/useUsers";
 import Swal from 'sweetalert2';
-import { useState } from 'react';
+// import { useState } from 'react';
 import useAxiosSecure from "../../../Axios/useAxiosSecure";
 import useCurrentUserInfo from "../../Users/Hook/useCurrentUserInfo";
 
 const ManageUsers = () => {
   const { allUsers, refetch } = useUsers();
   const { userEmail, currentUserId } = useCurrentUserInfo()
-  const [openDropdownId, setOpenDropdownId] = useState(null);
+//   const [openDropdownId, setOpenDropdownId] = useState(null);
 
 
   const axiosSecure = useAxiosSecure()
@@ -73,12 +73,12 @@ const ManageUsers = () => {
         Swal.fire('Failed to Update!', '', 'error');
     }
     console.log(`Update role for user ${userId} to ${newRole}`);
-    setOpenDropdownId(null);
+    // setOpenDropdownId(null);
   };
 
-  const toggleDropdown = (userId) => {
-    setOpenDropdownId((prevId) => (prevId === userId ? null : userId));
-  };
+//   const toggleDropdown = (userId) => {
+//     setOpenDropdownId((prevId) => (prevId === userId ? null : userId));
+//   };
 
   return (
     <div className="overflow-x-auto">

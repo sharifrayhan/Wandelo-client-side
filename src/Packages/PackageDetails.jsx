@@ -4,12 +4,20 @@ import Navbar from "../Pages/Home/Components/Navbar";
 import { useForm } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import useGuides from "../Pages/Guides/Hook/useGuides";
+import useAxiosSecure from "../Axios/useAxiosSecure";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import useCurrentUserInfo from "../Pages/Users/Hook/useCurrentUserInfo";
 
 const PackageDetails = () => {
   const { _id } = useParams();
   const { allPackages } = usePackages();
+   const { allGuides } = useGuides()
+   const { userEmail,userName } = useCurrentUserInfo()
 
   const selectedPackage = allPackages.find((s) => s._id.toString() === _id);
+  const axiosSecure = useAxiosSecure()
 
   const { place, image, tourTitle, price, details, tourPlan, spotImages } = selectedPackage;
 
@@ -20,9 +28,15 @@ const PackageDetails = () => {
     setValue(name, value);
   };
 
-  const onSubmit = (data) => {
-    // Implement your booking submission logic here
-    console.log("Booking submitted:", data);
+  const onSubmit = async (data) => {
+    console.log(data)
+    try {
+      await axiosSecure.post('/bookings', data);
+      toast.success('Booking added',);
+    } catch (error) {
+      console.error('Error booking package:', error.message);
+      toast.error('Error booking package. Please try again.',);
+    }
   };
 
   const spotGallery = () => (
@@ -31,7 +45,6 @@ const PackageDetails = () => {
         <img
           key={index}
           src={image}
-          alt={`Spot ${index + 1}`}
           className="w-full h-[240px] object-cover rounded-md shadow-lg hover:shadow-xl transition duration-300 ease-in-out"
         />
       ))}
@@ -50,7 +63,8 @@ const PackageDetails = () => {
   );
 
   return (
-    <div className="p-1 min-h-screen bg-[#0C4848]">
+    <div className="p-1  bg-[#0C4848]">
+      <ToastContainer></ToastContainer>
       <Navbar></Navbar>
       <div className="container z-0 mx-auto mt-[100px] bg-white p-8 rounded-md shadow-lg">
         <center>
@@ -82,34 +96,52 @@ const PackageDetails = () => {
               <center className="mt-4">
                     {/* Booking Form */}
           <div className="mb-8 border border-3 border-red-500 max-w-[300px] p-4">
-            <h2 className="text-2xl font-bold mb-4">Book Now</h2>
+            <h2 className="text-2xl text-[#f7f5f2] font-bold mb-4">Book Now</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-4 w-[230px]">
-                <label htmlFor="name" className="block text-sm font-semibold text-gray-700">
+                <label htmlFor="name" className="block text-sm font-semibold text-[#f7f5f2]">
                   Name:
                 </label>
                 <input
                   type="text"
                   id="name"
                   name="name"
+                  value={userName}
                   {...register("name", { required: true })}
                   className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                 />
               </div>
               <div className="mb-4 w-[230px]">
-                <label htmlFor="email" className="block text-sm font-semibold text-gray-700">
+                <label htmlFor="email" className="block text-sm font-semibold text-[#f7f5f2]">
                   Email:
                 </label>
                 <input
                   type="email"
                   id="email"
                   name="email"
+                  value={userEmail}
                   {...register("email", { required: true })}
                   className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                 />
               </div>
+
+              <div className="mb-4 hidden w-[230px]">
+                <label htmlFor="package" className="block text-sm font-semibold text-[#f7f5f2]">
+                  Selected Package:
+                </label>
+                <input
+                  type="package"
+                  id="package"
+                  name="package"
+                  {...register("package", { required: true })}
+                  placeholder={selectedPackage?.name}
+                  value={selectedPackage?._id}
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                />
+              </div>
+
               <div className="mb-4 ">
-                <label htmlFor="tourDate" className="block text-sm font-semibold text-gray-700">
+                <label htmlFor="tourDate" className="block text-sm font-semibold text-[#f7f5f2]">
                   Tour Date:
                 </label>
                 <DatePicker
@@ -123,7 +155,7 @@ const PackageDetails = () => {
                 />
               </div>
               <div className="mb-4 w-[230px]">
-                <label htmlFor="tourGuide" className="block text-sm font-semibold text-gray-700">
+                <label htmlFor="tourGuide" className="block text-sm font-semibold text-[#f7f5f2]">
                   Tour Guide:
                 </label>
                 <select
@@ -134,9 +166,11 @@ const PackageDetails = () => {
                 >
                   {/* Guide Names */}
                   <option value="">Select Tour Guide</option>
-                  <option value="guide1">Tour Guide 1</option>
-                  <option value="guide2">Tour Guide 2</option>
-
+                  {
+                    allGuides?.map(g=>(
+                      <option key={g?._id} value={g?._id}>{g?.name}</option>
+                    ))
+                  }
                 </select>
               </div>
               <button
