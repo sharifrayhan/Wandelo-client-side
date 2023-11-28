@@ -2,6 +2,9 @@ import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../../Axios/useAxiosSecure';
 import Swal from 'sweetalert2';
 import useCurrentUserInfo from '../../../Users/Hook/useCurrentUserInfo';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+
 
 
 const useWishlist = () => {
@@ -15,19 +18,27 @@ const useWishlist = () => {
     queryKey: ['wishlist'],
   });
 
+
+  const addToWishlist = async (id) => {
+    console.log(id)
+    try {
+      const response = await axiosSecure.post('/wishlist', {package: id});
+      console.log(response)
+      if (response.status == 201) {
+        toast.success('Added to your wishlist',);
+      }
+      else {
+        toast.error('Error adding to your wishlist',);
+        }
+      
+    } catch (error) {
+      console.error('Error adding to your wishlist:', error.message);
+      toast.error('Error adding to your wishlist. Please try again.',);
+    }
+  };
+
   const deleteWishlist = async (wishlistId) => {
     const id = wishlistId
-    const result = await Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-    });
-
-    if (result.isConfirmed) {
         try {
             const url =`/wishlist/${id}?email=${userEmail}`
             const response = await axiosSecure.delete(url, id);
@@ -49,10 +60,10 @@ const useWishlist = () => {
             console.error('Error occurred during deletion:', error);
             Swal.fire('Failed to Delete!', '', 'error');
         }
-    }
+    
 };
 
-  return { deleteWishlist, isLoading, allWishList, error, refetch };
+  return { deleteWishlist, isLoading, allWishList, error, refetch, addToWishlist };
 };
 
 export default useWishlist;

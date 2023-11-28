@@ -6,6 +6,7 @@ import AddPackage from "./Admin Content/AddPackage";
 import ManageUsers from "./Admin Content/ManageUsers";
 import TouristProfile from "./Tourist Content/TouristProfile";
 import Bookings from "./Tourist Content/Bookings";
+import Wishlist from "./Tourist Content/Wishlist";
 
 const Dashboard = () => {
   const { userRole } = useCurrentUserInfo();
@@ -46,6 +47,11 @@ const Dashboard = () => {
       case "My Bookings":
         return (
             <Bookings></Bookings>
+        );
+
+      case "My Wishlist":
+        return (
+            <Wishlist></Wishlist>
         );
 
       default:
