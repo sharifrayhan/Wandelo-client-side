@@ -140,6 +140,20 @@ const PackageDetails = () => {
                 />
               </div>
 
+              <div className="mb-4 hidden w-[230px]">
+                <label htmlFor="status" className="block text-sm font-semibold text-[#f7f5f2]">
+                  Status:
+                </label>
+                <input
+                  type="status"
+                  id="status"
+                  name="status"
+                  {...register("status", { required: true })}
+                  value={"In Review"}
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                />
+              </div>
+
               <div className="mb-4 ">
                 <label htmlFor="tourDate" className="block text-sm font-semibold text-[#f7f5f2]">
                   Tour Date:

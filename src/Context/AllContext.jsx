@@ -4,7 +4,7 @@ import { createUserWithEmailAndPassword, getAuth , onAuthStateChanged, signInWit
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
+// import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -98,7 +98,7 @@ const signIn = (email,password) => {
     }
 
     return (
-        <Context.Provider value={send}>{children}<ToastContainer />
+        <Context.Provider value={send}>{children}
         </Context.Provider>
     );
 };

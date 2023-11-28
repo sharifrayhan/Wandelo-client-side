@@ -81,7 +81,7 @@ const ManageUsers = () => {
 //   };
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-scroll">
       <table className="table table-xs md:table-md lg:table-md text-[#f7f5f2]">
         <thead>
           <tr className="text-[#f7f5f2]">
