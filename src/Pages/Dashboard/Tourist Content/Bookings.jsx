@@ -13,7 +13,7 @@ const Bookings = () => {
   };
 
   return (
-    <div className="overflow-x-scroll">
+    <div className="overflow-x-auto">
       <table className="table table-xs md:table-md lg:table-md text-[#f7f5f2]">
         <thead>
           <tr className='text-[#f7f5f2]'>
