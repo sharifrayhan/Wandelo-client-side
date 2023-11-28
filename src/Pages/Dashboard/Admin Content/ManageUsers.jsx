@@ -88,7 +88,9 @@ const ManageUsers = () => {
             <th>Serial</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Role</th>
+            <th>Current Role</th>
+            <th>Make Admin</th>
+            <th>Make Guide</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -110,88 +112,44 @@ const ManageUsers = () => {
                 </div>
               </td>
               <td>{user?.email}</td>
-              <td>
-                <div className="relative inline-block text-left ml-2">
-                  <button
-                    type="button"
-                    className="btn btn-ghost btn-xs"
-                    onClick={() => toggleDropdown(user?._id)}
-                    aria-haspopup="true"
-                    aria-expanded={openDropdownId === user?._id}
-                  >
-                    {user.role}
-                  </button>
-                  {openDropdownId === user._id && (
-                    <div
-                      className="origin-top-right absolute right-0 -mt-[150px] w-40 rounded-md shadow-lg bg-[#577a7d] ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
-                      role="menu"
-                      aria-orientation="vertical"
-                      aria-labelledby={`userRoleDropdown${user?._id}`}
-                    >
-                        {user?._id !== currentUserId &&
-                      <div className="py-1 z-50" role="menuitem" aria-disabled="true">
-                        {user?.role === 'admin' &&  (
-                          <button
-                            className="text-gray-500 block px-4 py-2 text-sm cursor-not-allowed"
-                            onClick={() => handleUpdateRole(user?._id, 'admin')}
-                            disabled
-                          >
-                            Admin
-                          </button>
-                        )}
-                        {user?.role !== 'admin' && (
-                          <button
-                            className="text-gray-700 block px-4 py-2 text-sm"
-                            onClick={() => handleUpdateRole(user?._id, 'admin')}
-                          >
-                            Admin
-                          </button>
-                        )}
-                        {user?.role === 'tourist' && (
-                          <button
-                            className="text-gray-500 block px-4 py-2 text-sm cursor-not-allowed"
-                            disabled
-                            onClick={() => handleUpdateRole(user?._id, 'tourist')}
-                          >
-                            Tourist
-                          </button>
-                        )}
-                        {user?.role !== 'tourist' && (
-                          <button
-                            className="text-gray-700 block px-4 py-2 text-sm"
-                            onClick={() => handleUpdateRole(user?._id, 'tourist')}
-                          >
-                            Tourist
-                          </button>
-                        )}
-                        {user?.role === 'guide' && (
-                          <button
-                            className="text-gray-500 block px-4 py-2 text-sm cursor-not-allowed"
-                            onClick={() => handleUpdateRole(user?._id, 'guide')}
-                            disabled
-                          >
-                            Guide
-                          </button>
-                        )}
-                        {user?.role !== 'guide' && (
-                          <button
-                            className="text-gray-700 block px-4 py-2 text-sm"
-                            onClick={() => handleUpdateRole(user?._id, 'guide')}
-                          >
-                            Guide
-                          </button>
-                        )}
-                      </div>
-                      }
-                    </div>
-                  )}
-                </div>
+              <td>{user?.role}</td>
+              <td                   title={
+                    user?.role === 'admin' ? 'User is already an admin' :
+                    user?.role === 'guide' ? 'User is already a guide' :
+                    user?._id === currentUserId ? "You can't change your own role" :
+                    ''
+                  }>
+                <button
+                  className="btn btn-ghost btn-xs"
+                  onClick={() => handleUpdateRole(user?._id, 'admin')}
+                  disabled={user?.role === 'admin' || user?._id === currentUserId}
+
+                >
+                  Make Admin
+                </button>
               </td>
-              <td>
+              <td                 title={
+                    user?.role === 'guide' ? 'User is already a guide' :
+                    user?.role === 'admin' ? 'User is already an admin' :
+                    user?._id === currentUserId ? "You can't change your own role" :
+                    ''
+                  }>
+                <button
+                  className="btn btn-ghost btn-xs"
+                  onClick={() => handleUpdateRole(user?._id, 'guide')}
+                  disabled={user?.role === 'guide' || user?.role === 'admin' || user?._id === currentUserId}
+  
+                  
+                >
+                  Make Guide
+                </button>
+              </td>
+              <td  title={user?._id === currentUserId ? "You can't delete yourself" : ''}>
                 <button
                   className="btn btn-ghost btn-xs"
                   onClick={() => handleDeleteUser(user?._id)}
                   disabled={user?._id === currentUserId}
+                 
                 >
                   <img className="h-5" src="https://i.ibb.co/BVL97Xn/delete-friend.png" alt="Delete" />
                 </button>

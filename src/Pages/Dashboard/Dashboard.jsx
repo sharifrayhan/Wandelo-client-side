@@ -4,6 +4,7 @@ import useCurrentUserInfo from "../Users/Hook/useCurrentUserInfo";
 import AdminProfile from "./Admin Content/AdminProfile";
 import AddPackage from "./Admin Content/AddPackage";
 import ManageUsers from "./Admin Content/ManageUsers";
+import TouristProfile from "./Tourist Content/TouristProfile";
 
 const Dashboard = () => {
   const { userRole } = useCurrentUserInfo();
@@ -34,6 +35,11 @@ const Dashboard = () => {
       case "Manage Users":
         return (
             <ManageUsers></ManageUsers>
+        );
+
+      case "Tourist Profile":
+        return (
+            <TouristProfile></TouristProfile>
         );
 
       default:

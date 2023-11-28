@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Context } from '../../../Context/AllContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,6 +11,7 @@ const Navbar = () => {
   const {user, logOut} = useContext(Context)
 
   const notify = () => toast('Logged out user');
+  const navigate = useNavigate()
 
   const userName = user?.displayName;
   const userPhoto = user?.photoURL;
@@ -23,6 +24,7 @@ const Navbar = () => {
   const handleLogOut = () => {
     logOut()
     notify()
+    navigate('/')
     setDropdownOpenTwo(false);
   };
 
