@@ -4,6 +4,9 @@ import { createUserWithEmailAndPassword, getAuth , onAuthStateChanged, signInWit
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 // import useAxiosSecure from '../Axios/useAxiosSecure';
 
@@ -48,9 +51,12 @@ const signIn = (email,password) => {
     const unSubscribe = onAuthStateChanged(auth, currentUser=>{
         console.log(' on auth state activity', currentUser);
         const userEmail = currentUser?.email || user?.email;
+        const userName = currentUser?.displayName;
         setUser(currentUser)
         setLoading(false)
         if(currentUser){
+            const notifyLogIn = () => toast.success(`Welcome back ${userName}`);
+            notifyLogIn()
             const loggeduserinfo = {email: userEmail}
             console.log(loggeduserinfo)
             axios.post('http://localhost:3000/jwt',loggeduserinfo,{withCredentials: true})
@@ -63,6 +69,10 @@ const signIn = (email,password) => {
             axios.post('http://localhost:3000/logout',loggeduserinfo,{withCredentials: true} )
             .then(res=>{
                 console.log(res.data)
+                if(res.data.success === true){
+                    const notifyLogOut = () => toast('Logged out user');
+                    notifyLogOut()
+                }
             })
         }
     });
@@ -78,17 +88,20 @@ const signIn = (email,password) => {
     return signOut(auth);
 }
 
+
+
     const send = {
         createUser,
         updateProfile,
         loading,
         signIn,
         user,
-        logOut
+        logOut,
     }
 
     return (
-        <Context.Provider value={send}>{children}</Context.Provider>
+        <Context.Provider value={send}>{children}<ToastContainer />
+        </Context.Provider>
     );
 };
 

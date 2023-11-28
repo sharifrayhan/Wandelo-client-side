@@ -10,7 +10,7 @@ const Navbar = () => {
 
   const {user, logOut} = useContext(Context)
 
-  const notify = () => toast('Logged out user');
+  // const notify = () => toast('Logged out user');
   const navigate = useNavigate()
 
   const userName = user?.displayName;
@@ -22,11 +22,10 @@ const Navbar = () => {
   };
 
   const handleLogOut = () => {
-    logOut()
-    notify()
-    navigate('/')
-    setDropdownOpenTwo(false);
-  };
+      logOut();
+      navigate('/');
+      setDropdownOpenTwo(false);
+    }
 
   const closeDropdownTwo = () => {
     setDropdownOpenTwo(true);
@@ -39,6 +38,7 @@ const Navbar = () => {
   const closeMenu = () => {
     setMenuOpen(false);
   };
+
 
 
 
