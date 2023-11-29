@@ -1,3 +1,4 @@
+import useStories from "../../Home/Components/Stories/Hook/useStories";
 import useCurrentUserInfo from "../../Users/Hook/useCurrentUserInfo";
 import { useForm } from 'react-hook-form';
 
@@ -5,10 +6,12 @@ import { useForm } from 'react-hook-form';
 const TouristProfile = () => {
   const { userRole, userPhoto, userEmail, userName } = useCurrentUserInfo();
   const { register, handleSubmit } = useForm();
+  const { postStory } = useStories()
 
 
   const onSubmit = async (data) => {
-
+    console.log(data)
+    postStory(data)
   }
 
   return (

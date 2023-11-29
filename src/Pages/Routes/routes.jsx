@@ -11,6 +11,10 @@ import PackageDetails from "../../Packages/PackageDetails";
 import Guides from "../Guides/Guides";
 import GuideDetails from "../Guides/GuideDetails";
 import Dashboard from "../Dashboard/Dashboard";
+import Beach from "../Home/Components/TourTypes/Beach";
+import Hiking from "../Home/Components/TourTypes/Hiking";
+import Nature from "../Home/Components/TourTypes/Nature";
+import Wildlife from "../Home/Components/TourTypes/WildLife";
 
 
 const router = createBrowserRouter([
@@ -58,6 +62,22 @@ const router = createBrowserRouter([
         {
           path: "/Dashboard",
           element: <Dashboard></Dashboard>
+        },
+        {
+          path: "/Beach-tours",
+          element: <Beach></Beach>
+        },
+        {
+          path: "/hiking-tours",
+          element: <Hiking></Hiking>
+        },
+        {
+          path: "/nature-tours",
+          element: <Nature></Nature>
+        },
+        {
+          path: "/wildlife-tours",
+          element: <Wildlife></Wildlife>
         },
       ],
     }, 
