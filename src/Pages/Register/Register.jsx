@@ -43,7 +43,7 @@ const Register = () => {
             const userData = {
               name: name,
               email: email,
-              photoURL: url,
+              profile_image: url,
               desiredRole: desiredRole,
             };
       
@@ -76,12 +76,12 @@ const Register = () => {
         <ToastContainer/>
       <Navbar />
       <div className="flex items-center justify-center min-h-screen">
-        <div className="p-8 rounded shadow-md bg-white w-full md:w-2/3 lg:w-1/2 xl:w-1/3">
-          <h2 className="text-2xl font-semibold mb-6">Register</h2>
+        <div className="p-8 rounded shadow-md bg-[#0A7443] w-full md:w-2/3 lg:w-1/2 xl:w-1/3">
+          <h2 className="text-2xl text-[#f7f5f2] font-semibold mb-6">Register</h2>
           <form onSubmit={handleSubmit(onSubmit)} >
             <div className="grid grid-cols-2 gap-4">
                 <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-600">Email:</label>
+                <label className="block text-sm font-medium text-[#f7f5f2]">Email:</label>
                 <input
                     type="text"
                     {...register('email', {
@@ -91,7 +91,7 @@ const Register = () => {
                         message: 'Please enter a valid email address',
                     },
                     })}
-                    className={`form-input mt-1 p-2 w-full ${errors?.email ? 'border-red-500' : ''}`}
+                    className={`form-input bg-[#f7f5f2] mt-1 p-2 w-full ${errors?.email ? 'border-red-500' : ''}`}
                 />
                 {errors?.email && (
                     <span className="text-red-500 text-xs">{errors?.email.message}</span>
@@ -99,13 +99,13 @@ const Register = () => {
                 </div>
 
                 <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-600">Name:</label>
+                <label className="block text-sm font-medium text-[#f7f5f2]">Name:</label>
                 <input
                     type="text"
                     {...register('name', {
                     required: 'Name is required',
                     })}
-                    className={`form-input mt-1 p-2 w-full ${errors?.name ? 'border-red-500' : ''}`}
+                    className={`form-input bg-[#f7f5f2] mt-1 p-2 w-full ${errors?.name ? 'border-red-500' : ''}`}
                 />
                 {errors?.name && (
                     <span className="text-red-500 text-xs">{errors?.name.message}</span>
@@ -113,13 +113,13 @@ const Register = () => {
                 </div>
 
                 <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-600">Profile Photo (URL):</label>
+                <label className="block text-sm font-medium text-[#f7f5f2]">Profile Photo (URL):</label>
                 <input
                     type="text"
                     {...register('photo', {
                     required: 'Profile photo URL is required',
                     })}
-                    className={`form-input mt-1 p-2 w-full ${errors?.photo ? 'border-red-500' : ''}`}
+                    className={`form-input bg-[#f7f5f2] mt-1 p-2 w-full ${errors?.photo ? 'border-red-500' : ''}`}
                 />
                 {errors?.photo && (
                     <span className="text-red-500 text-xs">{errors?.photo.message}</span>
@@ -127,12 +127,12 @@ const Register = () => {
                 </div>
 
                 <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-600">Desired Role:</label>
+                <label className="block text-sm font-medium text-[#f7f5f2]">Desired Role:</label>
                 <select
                     {...register('desiredRole', {
                     required: 'Role is required',
                     })}
-                    className={`form-select mt-1 p-2 w-full ${errors?.role ? 'border-red-500' : ''}`}
+                    className={`form-select bg-[#f7f5f2] mt-1 p-2 w-full ${errors?.role ? 'border-red-500' : ''}`}
                 >
                     <option value="">Select Role</option>
                     <option value="tourist">Tourist</option>
@@ -144,7 +144,7 @@ const Register = () => {
                 </div>
 
                 <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-600">Password:</label>
+                <label className="block text-sm font-medium text-[#f7f5f2]">Password:</label>
                 <input
                     type="password"
                     {...register('password', {
@@ -159,7 +159,7 @@ const Register = () => {
                         'Password must contain an uppercase letter and a special character',
                     },
                     })}
-                    className={`form-input mt-1 p-2 w-full ${errors?.password ? 'border-red-500' : ''}`}
+                    className={`form-input bg-[#f7f5f2] mt-1 p-2 w-full ${errors?.password ? 'border-red-500' : ''}`}
                 />
                 {errors?.password && (
                     <span className="text-red-500 text-xs">{errors?.password.message}</span>
@@ -167,14 +167,14 @@ const Register = () => {
                 </div>
 
                 <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-600">Confirm Password:</label>
+                <label className="block text-sm font-medium text-[#f7f5f2]">Confirm Password:</label>
                 <input
                     type="password"
                     {...register('confirmPassword', {
                     validate: (value) =>
                         value === watch('password') || 'Passwords do not match',
                     })}
-                    className={`form-input mt-1 p-2 w-full ${
+                    className={`form-input bg-[#f7f5f2] mt-1 p-2 w-full ${
                     errors?.confirmPassword ? 'border-red-500' : ''
                     }`}
                 />
@@ -192,7 +192,7 @@ const Register = () => {
                   required: 'You have to accept our terms & conditions',
                 })}
               />
-              <label className="ml-2 text-sm text-gray-600" htmlFor="terms">
+              <label className="ml-2 text-sm text-[#f7f5f2]" htmlFor="terms">
                 Accept Terms & Conditions
               </label>
               {errors?.terms && (
@@ -203,7 +203,7 @@ const Register = () => {
             <div className="col-span-2">
               <button
                 type="submit"
-                className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
+                className="bg-blue-500 text-[#f7f5f2] py-2 px-4 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
               >
                 Register
               </button>

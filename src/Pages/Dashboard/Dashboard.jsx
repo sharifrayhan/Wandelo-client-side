@@ -7,6 +7,8 @@ import ManageUsers from "./Admin Content/ManageUsers";
 import TouristProfile from "./Tourist Content/TouristProfile";
 import Bookings from "./Tourist Content/Bookings";
 import Wishlist from "./Tourist Content/Wishlist";
+import AssignedTours from "./Guide Content/AssignedTours";
+import GuideProfile from "./Guide Content/GuideProfile";
 
 const Dashboard = () => {
   const { userRole } = useCurrentUserInfo();
@@ -52,6 +54,16 @@ const Dashboard = () => {
       case "My Wishlist":
         return (
             <Wishlist></Wishlist>
+        );
+
+      case "My Assigned Tours":
+        return (
+            <AssignedTours></AssignedTours>
+        );
+
+      case "Guide Profile":
+        return (
+            <GuideProfile></GuideProfile>
         );
 
       default:

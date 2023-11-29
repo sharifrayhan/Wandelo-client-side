@@ -30,13 +30,15 @@ const Login = () => {
       signIn(email, password, navigate, location)
         .then(result => {
           console.log(result.user);
-          const notifyLogInSuccess = () => toast.success(`Welcome back ${result.user.displayName}`);
+          const notifyLogInSuccess = () => toast.success(`Welcome back ${result?.user?.displayName}`);
           notifyLogInSuccess()
           navigate(location?.state ? location.state : "/");
 
         })
         .catch(error => {
           console.error(error);
+          const notifyLogInError = () => toast.error(error.message);
+          notifyLogInError()
         });
     }
 

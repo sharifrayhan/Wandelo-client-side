@@ -1,7 +1,15 @@
 import useCurrentUserInfo from "../../Users/Hook/useCurrentUserInfo";
+import { useForm } from 'react-hook-form';
+
 
 const TouristProfile = () => {
   const { userRole, userPhoto, userEmail, userName } = useCurrentUserInfo();
+  const { register, handleSubmit } = useForm();
+
+
+  const onSubmit = async (data) => {
+
+  }
 
   return (
     <center className="flex flex-col items-center justify-center mt-8">
@@ -17,6 +25,28 @@ const TouristProfile = () => {
         <p className="text-gray-600 mb-4">{userEmail}</p>
         
       </div>
+
+      <form onSubmit={handleSubmit(onSubmit)} className="mt-4">
+          <center className="text-xl text-[#f7f5f2] mb-2"><h1>Add a Story</h1></center>
+        <input type="hidden" {...register('name')} value={userName} />
+        {/* <input type="hidden" {...register('email')} value={userEmail} /> */}
+        <input type="hidden" {...register('profile_image')} value={userPhoto} />
+        <div className="flex gap-2 text-[#f7f5f2]">
+          <label>Title</label>
+          <input {...register('title')} className="w-[55%] bg-[#577a7d] border rounded p-2 mb-4" />
+        </div>
+
+
+        <div className="flex gap-2 text-[#f7f5f2] ">
+            <label>Content</label>
+            <textarea {...register('content')} className="w-full bg-[#577a7d] border rounded p-2 mb-4" />
+        </div>
+
+        <button type="submit" className="bg-[#e1a66f] hover:bg-slate-400 text-white px-4 py-2 rounded-md">
+          Add Story
+        </button>
+      </form>
+
     </center>
   );
 };
