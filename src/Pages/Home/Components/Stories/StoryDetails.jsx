@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { FacebookShareButton,FacebookIcon, TwitterShareButton,TwitterIcon, LinkedinShareButton,  LinkedinIcon,
 } from 'react-share';
 import useStories from './Hook/useStories';
+import Navbar from '../Navbar';
 
 const StoryDetails = ( ) => {
   const { id } = useParams();
@@ -38,12 +39,23 @@ const StoryDetails = ( ) => {
   const shareUrl = window.location.href;
 
   return (
-    <div className="mx-auto max-w-2xl my-8">
+<div className='bg-[#0C4848] min-h-screen'>
+  <Navbar></Navbar>
+<div className="mx-auto p-7 text-[#f7f5f2] max-w-2xl my-8">
+  <center>
+  <img
+                src={story?.profile_image}
+                className="mb-4 h-[140px] rounded-full"
+              />
+  </center>
+  <center>
+    <h1>STORY: {story?.name}</h1>
+  </center>
       <h2 className="text-4xl font-extrabold mb-6 text-center">{story?.title}</h2>
       {story?.image && (
         <img src={story?.image} alt={story?.title} className="mb-4 rounded-lg shadow-md" />
       )}
-      <p className="text-gray-700 text-center">{story?.content}</p>
+      <p className="text-gray-300 text-center">{story?.content}</p>
       <div className="mt-4 flex justify-end">
         <div className="flex items-center space-x-4">
           <FacebookShareButton url={shareUrl} quote={story?.title}>
@@ -53,11 +65,12 @@ const StoryDetails = ( ) => {
             <span className="text-blue-400 flex items-center gap-2 cursor-pointer"><TwitterIcon size={32} round={true}></TwitterIcon> Share on Twitter</span>
           </TwitterShareButton>
           <LinkedinShareButton url={shareUrl} title={story?.title}>
-            <span className="text-blue-800 flex items-center gap-2 cursor-pointer"><LinkedinIcon size={32} round={true}></LinkedinIcon> Share on LinkedIn</span>
+            <span className="text-[#0077B5] flex items-center gap-2 cursor-pointer"><LinkedinIcon size={32} round={true}></LinkedinIcon> Share on LinkedIn</span>
           </LinkedinShareButton>
         </div>
       </div>
     </div>
+</div>
   );
 };
 
