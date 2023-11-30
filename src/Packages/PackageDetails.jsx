@@ -13,16 +13,19 @@ import { motion } from 'framer-motion';
 import Confetti from "react-confetti";
 import useCurrentUserInfo from "../Pages/Users/Hook/useCurrentUserInfo";
 import useBookings from "../Pages/Dashboard/Tourist Content/Hook/useBookings";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { Context } from "../Context/AllContext";
+
 
 const PackageDetails = () => {
   const { _id } = useParams();
   const { allPackages } = usePackages();
   const { allGuides } = useGuides();
-  const { userEmail, userName } = useCurrentUserInfo();
+  const { userEmail, userName, userRole } = useCurrentUserInfo();
   const {currentUserBookings, refetch} = useBookings()
   const [confetti, setConfetti] = useState(false);
   const modalShownRef = useRef(false);
+  const {user} = useContext(Context)
 
   useEffect(() => {
     if (currentUserBookings?.length === 3 && !modalShownRef.current) {
@@ -253,7 +256,7 @@ const PackageDetails = () => {
             <button
               type="submit"
               className="bg-[#e1a66f] text-white px-6 py-2 rounded-md transition duration-300 ease-in-out hover:bg-blue-600"
-              // disabled={!user || user.role !== "tourist"}
+              disabled={!user || userRole !== "tourist"}
             >
               Book Now
             </button>
