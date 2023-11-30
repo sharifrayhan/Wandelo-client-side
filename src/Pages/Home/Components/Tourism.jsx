@@ -1,24 +1,62 @@
 import { Link } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import { motion } from 'framer-motion';
 import "react-tabs/style/react-tabs.css";
-import useGuides from "../../Guides/Hook/useGuides";
+// import useGuides from "../../Guides/Hook/useGuides";
 import usePackages from "../../../Packages/Hook/usePackages";
 // import { useState } from "react";
 import useWishlist from "../../Dashboard/Tourist Content/Hook/useWishlist";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useCurrentUserInfo from "../../Users/Hook/useCurrentUserInfo";
+import v1 from "../../../assets/videos/1 v.mp4"
+import v2 from "../../../assets/videos/2.mp4"
+import v3 from "../../../assets/videos/3.mp4"
+import v4 from "../../../assets/videos/4.mp4"
+import vm from "../../../assets/videos/middle.mp4"
+
+
+const guidesData = [
+  {
+    _id: "656634fa1136f8ec80c0667a",
+    name: "Nevaan Ahmed",
+    profile_image: "https://i.ibb.co/5nV25Bf/Nevaan-Ahmed.png",
+    experience: "5 years"
+    },
+    {
+    _id: "656634fa1136f8ec80c0667b",
+    name: "Preyota Jannam",
+    profile_image: "https://i.ibb.co/kgd3kHv/Preyota-Jannam.png",
+     experience: "5 years"
+    },
+    {
+    _id: "656634fa1136f8ec80c0667c",
+    name: "Umong-Jai",
+    profile_image: "https://i.ibb.co/zr0wwMd/Umong-Jai.png",
+    experience: "5 years"
+    }
+];
 
 const Tourism = () => {
-  const { allGuides } = useGuides();
+  // const { allGuides } = useGuides();
   const { allPackages } = usePackages();
   const { addToWishlist } = useWishlist();
   const { userRole } = useCurrentUserInfo()
 
   const overviewContent = (
-    <div>
-      <h2>Overview</h2>
-      {/* Add videos or other content for the overview */}
+<div className="mx-auto mb-5">
+      <h2 className="text-2xl font-bold mb-4">Overview</h2>
+      <div className="flex items-center justify-center gap-2">
+        <div className="flex gap-2  flex-col">
+          <motion.video autoPlay loop muted src={v1} className="rounded-md w-[350px] shadow-md" />
+          <motion.video autoPlay loop muted src={v2} className="rounded-md w-[350px] shadow-md" />
+        </div>
+        <motion.video autoPlay loop muted src={vm} className="rounded-md w-[228px] shadow-md" />
+        <div className="flex gap-2 flex-col">
+          <motion.video autoPlay loop muted src={v3} className="rounded-md w-[350px] shadow-md" />
+          <motion.video autoPlay loop muted src={v4} className="rounded-md  w-[350px] shadow-md" />
+        </div>
+      </div>
     </div>
   );
 
@@ -81,7 +119,7 @@ const Tourism = () => {
         <h2>Meet Our Tour Guides</h2>
         <div>
           <div className="flex items-center justify-center flex-wrap gap-4">
-            {allGuides?.slice(0, 3).map((g) => (
+            {guidesData?.slice(0, 3).map((g) => (
               <div key={g?._id} className="glass p-4 rounded-md shadow-md">
                 <img
                   src={g?.profile_image}
@@ -113,7 +151,7 @@ const Tourism = () => {
   );
 
   return (
-    <center className="mb-3 text-[#F7F5F2] p-4 rounded-b-[80px] bg-[#0C4848]">
+    <center className="mb-3 text-[#F7F5F2]  p-4 rounded-b-[80px] bg-[#0C4848]">
       <ToastContainer></ToastContainer>
       <div>
         <h1 className="text-4xl  font-bold mb-6">Tourism and Travel Guides</h1>
