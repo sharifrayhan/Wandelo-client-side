@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Context } from "../../Context/AllContext";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import SocialLogin from "../Social Login/SocialLogin";
 // import useCurrentUserInfo from "../Users/Hook/useCurrentUserInfo";
 
 const Login = () => {
@@ -47,11 +48,11 @@ const Login = () => {
       <ToastContainer></ToastContainer>
       <Navbar></Navbar>
       <div className="flex items-center justify-center min-h-screen">
-        <div className=" p-8 rounded shadow-md glass w-full md:w-1/2 lg:w-1/3">
-          <h2 className="text-2xl font-semibold mb-6">Login</h2>
+        <div className=" p-8 rounded shadow-md bg-[#0b4442] w-full md:w-1/2 lg:w-1/3">
+          <h2 className="text-2xl text-[#f7f5f2] font-semibold mb-6">Login</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-600">
+              <label className="block text-sm font-medium text-[#f7f5f2]">
                 Email:
               </label>
               <input
@@ -75,7 +76,7 @@ const Login = () => {
             </div>
 
             <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-600">
+              <label className="block text-sm font-medium text-[#f7f5f2]">
                 Password:
               </label>
               <input
@@ -93,21 +94,21 @@ const Login = () => {
             </div>
 
             <div className="flex items-center justify-between">
-              <div>
+              {/* <div>
                 <input
                   type="checkbox"
                   id="remember"
                   {...register("remember")}
                 />
                 <label
-                  className="ml-2 text-sm text-gray-600"
+                  className="ml-2 text-sm text-[#f7f5f2] text-gray-600"
                   htmlFor="remember"
                 >
                   Remember me
                 </label>
-              </div>
+              </div> */}
               <div>
-                <a href="#" className="text-blue-500 text-sm hover:underline">
+                <a href="#" className="text-blue-500  text-sm hover:underline">
                   Forgot Password?
                 </a>
               </div>
@@ -128,6 +129,7 @@ const Login = () => {
              Register
            </Link>
          </p>
+         <SocialLogin></SocialLogin>
        </center>
           </form>
         </div>

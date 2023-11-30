@@ -59,12 +59,13 @@ const Navbar = () => {
     
     <nav className={` w-full sticky z-50 bg-transparent px-4 text-white py-3 transition-all duration-300 ease-in-out`}>
         <ToastContainer/>
-      <div className="flex flex-col md:flex-row lg:flex-row items-center justify-between mx-11">
+      <div className="flex flex-col md:flex-row gap-2 lg:flex-row items-center justify-between mx-11">
 
         {/* Company Logo */}
         <div className="">
-          <Link to="/" className="text-white font-bold text-lg">
-            Wandelo
+          <Link to="/" className="text-white flex gap-2 items-center font-bold text-lg">
+           <img className='h-5' src="https://i.ibb.co/6ZZYy4C/w-logo.png" alt="" />
+           <h1>Wandelo</h1>
           </Link>
         </div>
 
@@ -75,18 +76,18 @@ const Navbar = () => {
 
         {/* Main Navigation Links (Responsive) */}
         {menuOpen && (
-          <div className="md:hidden absolute top-full left-0 w-full bg-black bg-opacity-80 z-50">
+          <div className="md:hidden absolute top-full left-0 w-full bg-black bg-opacity-50 z-50">
             <div className="flex justify-end p-4">
               <button onClick={closeMenu}>
                 <img className="h-8" src="https://i.ibb.co/SmWHDf9/remove.png" alt="Close" />
               </button>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col pb-9 items-center">
               <Link to="/" onClick={closeMenu} className='text-white mb-1'>Home</Link>
-              <Link to="/community" onClick={closeMenu} className='text-white'>Community</Link>
-              <Link to="/blogs" onClick={closeMenu} className='text-white'>Blogs</Link>
-              <Link to="/about" onClick={closeMenu} className='text-white'>About Us</Link>
-              <Link to="/contact" onClick={closeMenu} className='text-white'>Contact Us</Link>
+              <Link to="/" onClick={closeMenu} className='text-white'>Community</Link>
+              <Link to="/" onClick={closeMenu} className='text-white'>Blogs</Link>
+              <Link to="/" onClick={closeMenu} className='text-white'>About Us</Link>
+              <Link to="/" onClick={closeMenu} className='text-white'>Contact Us</Link>
             </div>
           </div>
         )}
@@ -94,10 +95,10 @@ const Navbar = () => {
         {/* Main Navigation Links (Desktop) */}
         <div className="hidden md:flex gap-6">
           <Link to="/" className='hover:text-[#e27f5a] text-white'>Home</Link>
-          <Link to="/community" className='hover:text-[#e27f5a] text-white'>Community</Link>
-          <Link to="/blogs" className='hover:text-[#e27f5a] text-white'>Blogs</Link>
-          <Link to="/about" className='hover:text-[#e27f5a] text-white'>About Us</Link>
-          <Link to="/contact" className='hover:text-[#e27f5a] text-white'>Contact Us</Link>
+          <Link to="/" className='hover:text-[#e27f5a] text-white'>Community</Link>
+          <Link to="/" className='hover:text-[#e27f5a] text-white'>Blogs</Link>
+          <Link to="/" className='hover:text-[#e27f5a] text-white'>About Us</Link>
+          <Link to="/" className='hover:text-[#e27f5a] text-white'>Contact Us</Link>
         </div>
 
         {/* User Dropdown */}

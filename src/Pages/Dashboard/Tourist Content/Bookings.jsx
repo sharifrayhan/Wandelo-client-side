@@ -1,8 +1,8 @@
 import useBookings from "./Hook/useBookings";
 
 const Bookings = () => {
-  const { allBookings, deleteBooking } = useBookings();
-
+  const { currentUserBookings, deleteBooking } = useBookings();
+console.log( currentUserBookings?.length)
 
 //   const handleUpdate = (bookingId, newStatus) => {
 //     updateBooking(bookingId, newStatus);
@@ -14,6 +14,7 @@ const Bookings = () => {
 
   return (
     <div className="overflow-x-auto">
+      {currentUserBookings?.length === 0 && <center><p className="text-[#f7f5f2]">Your have no bookings added.</p></center>}
       <table className="table table-xs md:table-md lg:table-md text-[#f7f5f2]">
         <thead>
           <tr className='text-[#f7f5f2]'>
@@ -29,7 +30,7 @@ const Bookings = () => {
           </tr>
         </thead>
         <tbody>
-          {allBookings?.map((booking, index) => (
+          {currentUserBookings?.map((booking, index) => (
             <tr key={booking?._id}>
               <td>{index + 1}</td>
               {/* <td>{booking?.name}</td>
@@ -51,9 +52,25 @@ const Bookings = () => {
                 <button
                   className=""
                   onClick={() => handleDelete(booking?._id)}
+                  disabled={!booking?.status=="In Review"}
                 >
-                  <img className="h-9" src="https://i.ibb.co/86KFNHr/delete-2.png" alt="Delete" />
+                  <img className="h-9" src="https://i.ibb.co/86KFNHr/delete-2.png"/>
                 </button>
+                <button
+                  className="mr-2"
+                  disabled={!(booking?.status === "Accept" || booking?.status === "Accepted")}
+                  // onClick={() => handleDelete(booking?._id)}
+                >
+                  <img className="h-9" src="https://i.ibb.co/Z18vpG6/pay.png" />
+                </button>
+                <button
+                  className=""
+                  disabled={!(currentUserBookings?.length >= 3)}
+                  // onClick={() => handleDelete(booking?._id)}
+                >
+                  <img className="h-7" src="https://i.ibb.co/KWbdKjP/apply.png" />
+                </button>
+
               </td>
             </tr>
           ))}

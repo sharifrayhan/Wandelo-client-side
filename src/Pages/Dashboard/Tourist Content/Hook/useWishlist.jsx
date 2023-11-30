@@ -17,12 +17,12 @@ const useWishlist = () => {
     },
     queryKey: ['wishlist'],
   });
-
+  const currentUserWishlist = allWishList?.filter((w) => w?.email === userEmail);
 
   const addToWishlist = async (id) => {
     console.log(id)
     try {
-      const response = await axiosSecure.post('/wishlist', {package: id});
+      const response = await axiosSecure.post('/wishlist', {package: id, email:userEmail });
       console.log(response)
       if (response.status == 201) {
         toast.success('Added to your wishlist',);
@@ -63,7 +63,7 @@ const useWishlist = () => {
     
 };
 
-  return { deleteWishlist, isLoading, allWishList, error, refetch, addToWishlist };
+  return { deleteWishlist, isLoading, allWishList, error, refetch,currentUserWishlist, addToWishlist };
 };
 
 export default useWishlist;

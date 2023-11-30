@@ -1,7 +1,20 @@
 import { Link } from "react-router-dom";
+import useWishlist from "../Pages/Dashboard/Tourist Content/Hook/useWishlist";
+import useCurrentUserInfo from "../Pages/Users/Hook/useCurrentUserInfo";
 
 const PackageCard = ({ singlePackage }) => {
     const { _id,place, image, tourTitle, details, price } = singlePackage;
+
+    const { addToWishlist } = useWishlist();
+    const { userRole } = useCurrentUserInfo()
+
+    const handleButtonClick = (id) => {
+        try {
+            addToWishlist(id);
+        } catch (error) {
+          console.error("Error updating wishlist:", error);
+        }}
+    
 
     return (
         <div className="relative bg-gray-800 text-white rounded-lg h-[300px] overflow-hidden shadow-lg mx-auto w-64 sm:w-96">
@@ -17,7 +30,18 @@ const PackageCard = ({ singlePackage }) => {
                     <button className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                         Details
                     </button>
-                </Link>
+                    </Link>
+                    <button
+                className="absolute hover:scale-150 top-2 right-2 bg-transparent border-none focus:outline-none"
+                onClick={() => handleButtonClick(_id)}
+                disabled={!userRole=="tourist"}
+              >
+                <img
+                  className="h-5"
+                  src="https://i.ibb.co/n0Br4jS/heart-full.png"
+                />
+              </button>
+              
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import usePackages from "./Hook/usePackages";
 import Navbar from "../Pages/Home/Components/Navbar";
 import { useForm } from "react-hook-form";
@@ -13,8 +13,11 @@ import { motion } from 'framer-motion';
 import Confetti from "react-confetti";
 import useCurrentUserInfo from "../Pages/Users/Hook/useCurrentUserInfo";
 import useBookings from "../Pages/Dashboard/Tourist Content/Hook/useBookings";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Context } from "../Context/AllContext";
+// import Guides from "../Pages/Guides/Guides";
+import useUsers from "../Pages/Users/Hook/useUsers";
+import useGuidesFromUsers from "../Pages/Dashboard/Guide Content/Hook/useGuidesFromUsers";
 
 
 const PackageDetails = () => {
@@ -24,11 +27,14 @@ const PackageDetails = () => {
   const { userEmail, userName, userRole } = useCurrentUserInfo();
   const {currentUserBookings, refetch} = useBookings()
   const [confetti, setConfetti] = useState(false);
-  const modalShownRef = useRef(false);
+  // const modalShownRef = useRef(false);
+  const [lengthCheck, setLengthCheck] = useState(false)
   const {user} = useContext(Context)
+  const { isLoading, error } = useUsers();
+  const { filteredGuides } = useGuidesFromUsers();
 
   useEffect(() => {
-    if (currentUserBookings?.length === 3 && !modalShownRef.current) {
+    if (lengthCheck) {
       setConfetti(true);
       Swal.fire({
         title: 'Congratulations!',
@@ -41,14 +47,14 @@ const PackageDetails = () => {
       }).then((result) => {
         if (result.isConfirmed) {
           Swal.fire(`Discount Code Revealed!', 'Your discount code is: ${userName}50%wandelo', 'You can apply this code when you pay`);
-          modalShownRef.current = true;
           setConfetti(false)
+          setLengthCheck(false)
         }
         
       });
 
     }
-  }, []);
+  }, [lengthCheck, userName]);
 
   const selectedPackage = allPackages.find((s) => s._id.toString() === _id);
   const axiosSecure = useAxiosSecure();
@@ -64,6 +70,9 @@ const PackageDetails = () => {
   };
 
   const onSubmit = async (data) => {
+    if(currentUserBookings?.length === 3){
+      setLengthCheck(true)
+    }
     console.log(data);
     try {
       await axiosSecure.post("/bookings", data);
@@ -263,6 +272,41 @@ const PackageDetails = () => {
           </form>
         </div>
       </center>
+      
+      </div>
+      {/* <Guides></Guides> */}
+      <center><h1 className="text-white text-xl">Our Guides</h1></center>
+      <div className=" items-center justify-center mt-10 flex flex-wrap gap-4">
+        
+        {isLoading && <p>Loading...</p>}
+        {error && <p>Error: {error.message}</p>}
+        {filteredGuides &&
+          filteredGuides?.map((guide) => (
+            <div
+              key={guide._id}
+              className="bg-[#f7f5f2] text-center p-6 rounded-lg shadow-lg"
+            >
+              <img
+                src={guide.profile_image}
+                alt={guide.name}
+                className="mb-4 h-32 w-full object-cover rounded-md"
+              />
+              <span className="text-gray-400">
+                Joined: {guide?.createdAt?.substring(0, 10)}
+              </span>
+              <h3 className="text-xl font-semibold mb-2">{guide.name}</h3>
+              <p className="text-gray-500 mb-4">
+                Experience: {guide.experience}
+              </p>
+              <div className="flex justify-center items-center">
+                <Link to={`/GuideDetails/${guide._id}`}>
+                  <button className="bg-[#e1a66f] hover:bg-slate-400 text-white px-4 py-2 rounded-md">
+                    Details
+                  </button>
+                </Link>
+              </div>
+            </div>
+          ))}
       </div>
     </div>
   );

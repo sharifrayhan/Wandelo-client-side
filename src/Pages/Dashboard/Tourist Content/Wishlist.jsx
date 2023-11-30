@@ -1,41 +1,49 @@
+import { Link } from "react-router-dom";
 import useWishlist from "./Hook/useWishlist";
 
 const Wishlist = () => {
-  const { allWishList, deleteWishlist, refetch } = useWishlist();
+  const { currentUserWishlist, deleteWishlist, refetch } = useWishlist();
 
-  const handleDelete = (id) =>{
-    deleteWishlist(id)
-    refetch()
-  }
+  const handleDelete = (id) => {
+    deleteWishlist(id);
+    refetch();
+  };
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-semibold mb-6">Your Wishlist</h1>
-      {allWishList?.length === 0 && <p>Your wishlist is empty.</p>}
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {allWishList?.map((item) => (
-          <div
-            key={item?._id}
-            className="bg-white shadow-lg rounded-md p-4 overflow-hidden transition-transform transform hover:scale-105"
-          >
-            <img
-              src={item?.package.image}
-              className="w-full h-32 object-cover mb-4 rounded-md"
-            />
-            <h2 className="text-xl font-semibold mb-2">{item?.package?.tourTitle}</h2>
-            <p className="text-gray-600 mb-4">{item?.package?.tourType}</p>
-            <div className="flex justify-between items-center">
-              <span className="text-lg font-bold">${item?.package?.price}</span>
-              <button
-                onClick={() => handleDelete(item?._id)}
-                className="text-red-500 hover:text-red-700 transition duration-300"
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        ))}
+      <div className="overflow-x-auto text-[#f7f5f2]">
+        <table className="table">
+          <thead>
+            <tr className="text-[#f7f5f2]">
+              <th>Serial No.</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Action</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentUserWishlist?.map((item, index) => (
+              <tr key={item?._id}>
+                <td>{index + 1}</td>
+                <td>{item?.package?.tourTitle}</td>
+                <td>{item?.package?.price}</td>
+                {/* <td>${item?.package?.price}</td> */}
+                <td>
+                  <button
+                    onClick={() => handleDelete(item?._id)}
+                    className="text-red-500 hover:text-red-700 transition duration-300"
+                  >
+                    Delete
+                  </button>
+                </td>
+                <td>
+                  <Link to={`/PackageDetails/${item?.package?._id}`}><button className="btn btn-ghost btn-xs">View Details</button></Link>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

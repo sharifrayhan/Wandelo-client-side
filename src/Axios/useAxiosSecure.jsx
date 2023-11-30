@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:3000',
+    baseURL: 'https://wandelo-server.vercel.app/',
     withCredentials: true
 })
 
@@ -21,19 +21,19 @@ useEffect(()=>{
 
         console.log("error catched by interceptor", error.response)
 
-        if (error.response) {
+        // if (error.response) {
 
-            if (error.response.status === 401) {
+        //     if (error.response.status === 401) {
 
-                // navigate('/401');
+        //         // navigate('/401');
 
-            } else if (error.response.status === 403) {
+        //     } else if (error.response.status === 403) {
 
-                // navigate('/403');
+        //         // navigate('/403');
                
 
-            }
-        }
+        //     }
+        // }
     }
     
     )

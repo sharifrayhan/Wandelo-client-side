@@ -4,17 +4,28 @@ import useCurrentUserInfo from "../../Users/Hook/useCurrentUserInfo";
 
 const AssignedTours = () => {
   const { allBookings, updateBooking } = useBookings();
-  const [selectedStatus, setSelectedStatus] = useState("");
-  const { userEmail } = useCurrentUserInfo()
+  const { userEmail } = useCurrentUserInfo();
+
+  const [selectedStatuses, setSelectedStatuses] = useState({});
 
   const filteredBookings = allBookings?.filter(
     (booking) => booking?.tourGuide?.email === userEmail
   );
 
   const handleUpdateBooking = (tourId) => {
+    const selectedStatus = selectedStatuses[tourId];
+
     if (selectedStatus) {
       updateBooking(tourId, selectedStatus);
     }
+  };
+
+  const handleStatusChange = (tourId, status) => {
+    // Update the selected status in the state
+    setSelectedStatuses((prevStatuses) => ({
+      ...prevStatuses,
+      [tourId]: status,
+    }));
   };
 
   return (
@@ -41,16 +52,16 @@ const AssignedTours = () => {
               <td>{booking?.package?.price}</td>
               <td>
                 <select
-                  value={selectedStatus}
-                  onChange={(e) => setSelectedStatus(e.target.value)}
+                  value={selectedStatuses[booking?._id] || ""}
+                  onChange={(e) => handleStatusChange(booking?._id, e.target.value)}
                   className="p-2 rounded-md border-none focus:outline-none bg-[#0C4848] text-white"
                 >
                   <option value="" disabled>
                     {booking?.status}
                   </option>
-                  <option value="accept">Accept</option>
-                  <option value="reject">Reject</option>
-                  <option value="inReview">In Review</option>
+                  <option value="Accepted">Accept</option>
+                  <option value="Rejected">Reject</option>
+                  <option value="In Review">In Review</option>
                 </select>
               </td>
               <td>

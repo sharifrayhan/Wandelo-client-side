@@ -72,14 +72,14 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="p-1 bg-[#0C4848]">
+    <div className="p-1 min-h-screen bg-[#0C4848]">
       <Navbar />
-      <div className="drawer z-0  mt-[7px] lg:drawer-open">
+      <div className="drawer z-0  mt-[7px] flex flex-col lg:flex-row gap-5 drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center ">
-          {selectedOption && renderSelection()}
-        </div>
-        <div className="drawer-side ">
+        
+
+
+        <div className="drawer-side h-[150px] md:h-[150px] lg:h-screen ">
           <label
             htmlFor="my-drawer-2"
             aria-label="close sidebar"
@@ -99,7 +99,13 @@ const Dashboard = () => {
             ))}
           </ul>
         </div>
+
+        <div className="drawer-content flex flex-col items-center ">
+          {selectedOption && renderSelection()}
+        </div>
+
       </div>
+
     </div>
   );
 };

@@ -1,8 +1,18 @@
-# React + Vite
+# Wandelo
+Wandelo works on different spots based in Bangladesh. We have experienced tour guides and best packages. Tourist can book packages, add them to their wishlist and select any tour guides they like. Also tour guides can register here and make their profile. Guides tourist and admins all have different dashboard to work on.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+## Image Resources used
+resources -> [ImgBB](https://imgbb.com/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Packages used
+react-tabs
+react-share
+react-datepicker
+react-confetti
+
+
+
+## Project Live link
+https://wandelo-client-sharifrayhan.netlify.app

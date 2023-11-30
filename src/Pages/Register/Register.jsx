@@ -6,6 +6,7 @@ import { Context } from '../../Context/AllContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useAxiosSecure from '../../Axios/useAxiosSecure'
+import SocialLogin from '../Social Login/SocialLogin';
 
 const Register = () => {
     const {
@@ -215,6 +216,7 @@ const Register = () => {
                 Login
               </Link>
             </p>
+            <SocialLogin></SocialLogin>
           </center>
           </form>
         </div>

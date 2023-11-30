@@ -87,8 +87,8 @@ const ManageUsers = () => {
           <tr className="text-[#f7f5f2]">
             <th>Serial</th>
             <th>Name</th>
-            <th>Email</th>
-            <th>Current Role</th>
+            {/* <th>Email</th> */}
+            {/* <th>Current Role</th> */}
             <th>Make Admin</th>
             <th>Make Guide</th>
             <th>Action</th>
@@ -108,11 +108,12 @@ const ManageUsers = () => {
                   <div>
                     <div className="font-bold">{user?.name}</div>
                     <div className="text-sm opacity-50">{user?.email}</div>
+                    <div className="text-sm opacity-50">{user?.role}</div>
                   </div>
                 </div>
               </td>
-              <td>{user?.email}</td>
-              <td>{user?.role}</td>
+              {/* <td>{user?.email}</td> */}
+              {/* <td>{user?.role}</td> */}
               <td                   title={
                     user?.role === 'admin' ? 'User is already an admin' :
                     user?.role === 'guide' ? 'User is already a guide' :
