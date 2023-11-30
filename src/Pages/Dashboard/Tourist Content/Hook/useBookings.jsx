@@ -15,6 +15,8 @@ const useBookings = () => {
     queryKey: ['bookings'],
   });
 
+  const currentUserBookings = allBookings?.filter((u) => u?.email === userEmail);
+
   const updateBooking = async (bookingId, newStatus) => {
     try {
         const id= bookingId
@@ -80,7 +82,7 @@ const useBookings = () => {
     }
 };
 
-  return { allBookings, isLoading, updateBooking, deleteBooking, error, refetch };
+  return { allBookings,currentUserBookings , isLoading, updateBooking, deleteBooking, error, refetch };
 };
 
 export default useBookings;

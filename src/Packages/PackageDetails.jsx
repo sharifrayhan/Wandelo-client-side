@@ -6,16 +6,46 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import useGuides from "../Pages/Guides/Hook/useGuides";
 import useAxiosSecure from "../Axios/useAxiosSecure";
+import Swal from 'sweetalert2';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { motion } from 'framer-motion';
+import Confetti from "react-confetti";
 import useCurrentUserInfo from "../Pages/Users/Hook/useCurrentUserInfo";
+import useBookings from "../Pages/Dashboard/Tourist Content/Hook/useBookings";
+import { useEffect, useRef, useState } from "react";
 
 const PackageDetails = () => {
   const { _id } = useParams();
   const { allPackages } = usePackages();
   const { allGuides } = useGuides();
   const { userEmail, userName } = useCurrentUserInfo();
+  const {currentUserBookings, refetch} = useBookings()
+  const [confetti, setConfetti] = useState(false);
+  const modalShownRef = useRef(false);
+
+  useEffect(() => {
+    if (currentUserBookings?.length === 3 && !modalShownRef.current) {
+      setConfetti(true);
+      Swal.fire({
+        title: 'Congratulations!',
+        text: 'You have earned a discount. Click the button to reveal the code.', 
+        icon: 'success',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Apply'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(`Discount Code Revealed!', 'Your discount code is: ${userName}50%wandelo', 'You can apply this code when you pay`);
+          modalShownRef.current = true;
+          setConfetti(false)
+        }
+        
+      });
+
+    }
+  }, []);
 
   const selectedPackage = allPackages.find((s) => s._id.toString() === _id);
   const axiosSecure = useAxiosSecure();
@@ -35,6 +65,7 @@ const PackageDetails = () => {
     try {
       await axiosSecure.post("/bookings", data);
       toast.success("Booking added");
+      refetch()
     } catch (error) {
       console.error("Error booking package:", error.message);
       toast.error("Error booking package. Please try again.");
@@ -79,6 +110,7 @@ const PackageDetails = () => {
   return (
     <div className="p-1  bg-[#0C4848]">
       <ToastContainer></ToastContainer>
+      {confetti && <Confetti />}
       <Navbar></Navbar>
       <div className="flex p-3 flex-col md:flex-row items-center md:items-start lg:items-start justify-center lg:flex-row gap-4 ">
       <div className=" z-0 max-w-[600px]  bg-[#f7f5f2] p-8 rounded-md shadow-lg">

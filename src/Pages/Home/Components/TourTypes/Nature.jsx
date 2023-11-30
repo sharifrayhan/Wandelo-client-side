@@ -23,12 +23,12 @@ const Nature = () => {
     }}
 
   return (
-    <div>
+    <div className='bg-[#0C4848] min-h-screen'>
         <ToastContainer></ToastContainer>
         <Navbar></Navbar>
         <div className="container mx-auto mt-8">
-      <h2 className="text-3xl font-bold mb-6 text-center">Nature Tour Packages</h2>
-      <div className="flex flex-col md:flex-row lg:flex-row items-center justify-center gap-8">
+      <h2 className="text-3xl font-bold mb-6 text-[#f7f5f2] text-center">Nature Tour Packages</h2>
+      <div className="flex flex-col text-center md:flex-row lg:flex-row items-center justify-center gap-8">
         {beachPackages?.map((p) => (
           <div
             key={p?._id}

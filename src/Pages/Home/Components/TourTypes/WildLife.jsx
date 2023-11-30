@@ -23,12 +23,12 @@ const Wildlife= () => {
     }}
 
   return (
-    <div>
+    <div className='bg-[#0C4848] min-h-screen'>
         <ToastContainer></ToastContainer>
         <Navbar></Navbar>
         <div className="container mx-auto mt-8">
-      <h2 className="text-3xl font-bold mb-6 text-center">Wildlife Tour Packages</h2>
-      <div className="flex flex-col md:flex-row lg:flex-row items-center justify-center gap-8">
+      <h2 className="text-3xl font-bold text-[#f7f5f2] mb-6 text-center">Wildlife Tour Packages</h2>
+      <div className="flex text-center flex-col md:flex-row lg:flex-row items-center justify-center gap-8">
         {beachPackages?.map((p) => (
           <div
             key={p?._id}
