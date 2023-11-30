@@ -79,7 +79,7 @@ export const TouristStories = () => {
       </Swiper>
 
       <Link to="/AllStories" className="block text-center mt-4">
-        <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">
+        <button className="bg-[#e1a66f] text-white px-6 py-3 rounded-full shadow-lg hover:bg-[#d18d5a] transition duration-300">
           View All Stories
         </button>
       </Link>

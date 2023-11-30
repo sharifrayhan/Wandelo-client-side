@@ -46,7 +46,7 @@ const Tourism = () => {
   const { userRole } = useCurrentUserInfo()
 
   const overviewContent = (
-<div className="mx-auto mb-5">
+<div className="mx-auto  mb-5">
       <h2 className="text-2xl font-bold mb-4">Overview</h2>
       <div className="flex items-center justify-center gap-2">
         <div className="flex gap-2  flex-col">
@@ -122,18 +122,18 @@ const Tourism = () => {
         <div>
           <div className="flex items-center justify-center flex-wrap gap-4">
             {guidesData?.slice(0, 3).map((g) => (
-              <div key={g?._id} className="glass p-4 rounded-md shadow-md">
+              <div key={g?._id} className=" p-4 rounded-md shadow-md">
                 <img
                   src={g?.profile_image}
                   alt="Tour Guide 1"
                   className="mb-2 h-[200px] rounded-full"
                 />
-                <h3 className="text-lg text-black font-semibold">{g?.name}</h3>
-                <p className="text-gray-500 mb-2">
+                <h3 className="text-lg text-[#f7f5f2] font-semibold">{g?.name}</h3>
+                <p className="text-gray-300 mb-2">
                   Experience: {g?.experience}
                 </p>
                 <Link to={`/GuideDetails/${g?._id}`}>
-                  <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
+                  <button className="bg-[#577a7d] text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors duration-300">
                     Details
                   </button>
                 </Link>
@@ -142,7 +142,7 @@ const Tourism = () => {
           </div>
           <center className="mt-3">
             <Link to="/Guides">
-              <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
+              <button className="bg-[#e1a66f] text-white px-6 py-3 rounded-full shadow-lg hover:bg-[#d18d5a] transition duration-300">
                 All Guides
               </button>
             </Link>

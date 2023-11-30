@@ -154,7 +154,7 @@ const GuideDetails = () => {
             </div>
           </div>
         ) : (
-          <p>Loading...</p>
+          <p>No Guide Found</p>
         )}
       </div>
     </div>

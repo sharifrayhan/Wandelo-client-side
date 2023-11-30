@@ -31,9 +31,9 @@ const TourTypes = () => {
   ];
 
   return (
-    <div className="mx-auto my-8">
+    <div className="mx-auto my-8 text-[#F7F5F2] p-4 rounded-b-[80px] bg-[#0C4848] -mt-5">
       <h2 className="text-4xl font-extrabold mb-6 text-center">Explore Different Tour Types</h2>
-      <div className="flex flex-wrap justify-center gap-4">
+      <div className="flex flex-wrap pb-4 justify-center gap-4">
         {data?.map((d) => (
           <Link to={d?.link} key={d?.id}>
             <motion.div
