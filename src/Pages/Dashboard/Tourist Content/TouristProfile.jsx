@@ -16,7 +16,7 @@ const TouristProfile = () => {
 
   return (
     <center className="flex flex-col items-center justify-center mt-8">
-      <div className="bg-[#F7F5F2] w-[300px] p-8 rounded-lg shadow-md border border-gray-300">
+      <div className="bg-[#F7F5F2] w-[350px] p-8 rounded-lg shadow-md border border-gray-300">
         <div className="mb-6">
           <img
             src={userPhoto}

@@ -70,7 +70,7 @@ const PackageDetails = () => {
   };
 
   const onSubmit = async (data) => {
-    if(currentUserBookings?.length === 3){
+    if(currentUserBookings?.length === 2){
       setLengthCheck(true)
     }
     console.log(data);
