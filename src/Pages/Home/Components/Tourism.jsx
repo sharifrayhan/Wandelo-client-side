@@ -48,7 +48,7 @@ const Tourism = () => {
   const overviewContent = (
 <div className="mx-auto  mb-5">
       <h2 className="text-2xl font-bold mb-4">Overview</h2>
-      <div className="flex items-center justify-center gap-2">
+      <div className="flex flex-col md:flex-row lg:flex-row items-center justify-center gap-2">
         <div className="flex gap-2  flex-col">
           <motion.video autoPlay loop muted src={v1} className="rounded-md w-[350px] shadow-md" />
           <motion.video autoPlay loop muted src={v2} className="rounded-md w-[350px] shadow-md" />
@@ -76,7 +76,7 @@ const Tourism = () => {
           {allPackages?.slice(0, 3).map((p) => (
             <div
               key={p?._id}
-              className="relative bg-[#f7f5f2] w-[260px] h-[350px] p-4 rounded-md shadow-md transition-transform transform "
+              className="relative bg-[#0C4848]  w-[260px] h-[350px] p-4 rounded-md shadow-md transition-transform transform "
             >
               <div className=" mb-4">
                 <img
@@ -84,9 +84,9 @@ const Tourism = () => {
                   className="h-[160px] rounded-md"
                 />
               </div>
-              <h3 className="text-lg h-[60px] text-black font-semibold mb-2">{p?.tourTitle}</h3>
-              <p className="text-gray-500 mb-2">{p?.tourType}</p>
-              <p className="text-gray-700 mb-2">Price: {p?.price} TK</p>
+              <h3 className="text-lg h-[60px] text-[#F7F5F2] font-semibold mb-2">{p?.tourTitle}</h3>
+              <p className="text-gray-400 mb-2">{p?.tourType}</p>
+              <p className="text-gray-400 mb-2">Price: {p?.price} TK</p>
               <Link to={`/PackageDetails/${p?._id}`}>
                 <button className="bg-[#577a7d] text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors duration-300">
                   View Package
@@ -128,8 +128,8 @@ const Tourism = () => {
                   alt="Tour Guide 1"
                   className="mb-2 h-[200px] rounded-full"
                 />
-                <h3 className="text-lg text-[#f7f5f2] font-semibold">{g?.name}</h3>
-                <p className="text-gray-300 mb-2">
+                <h3 className="text-lg text-gray-700 font-semibold">{g?.name}</h3>
+                <p className="text-gray-500 mb-2">
                   Experience: {g?.experience}
                 </p>
                 <Link to={`/GuideDetails/${g?._id}`}>
@@ -153,7 +153,7 @@ const Tourism = () => {
   );
 
   return (
-    <center className="mb-3 text-[#F7F5F2]  p-4 rounded-b-[80px] bg-[#0C4848]">
+    <center className="mb-3 p-4 rounded-b-[80px]">
       <ToastContainer></ToastContainer>
       <div>
         <h1 className="text-4xl  font-bold mb-6">Tourism and Travel Guides</h1>
