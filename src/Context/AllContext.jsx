@@ -61,21 +61,21 @@ const signIn = (email,password) => {
         setLoading(false)
         if(currentUser){
             const loggeduserinfo = {email: userEmail}
-            console.log(loggeduserinfo)
+            // console.log(loggeduserinfo)
             axios.post('https://wandelo-server.vercel.app/jwt',loggeduserinfo,{withCredentials: true})
-            .then(res=>{
-                console.log(res.data)
-            })
+            // .then(res=>{
+            //     // console.log(res.data)
+            // })
         }
         else{
             const loggeduserinfo = {email: userEmail}
             axios.post('https://wandelo-server.vercel.app/logout',loggeduserinfo,{withCredentials: true} )
-            .then(res=>{
-                console.log(res.data)
-                // if(res.data.success === true){
+            // .then(res=>{
+            //     // console.log(res.data)
+            //     // if(res.data.success === true){
 
-                // }
-            })
+            //     // }
+            // })
         }
     });
     return () =>{
