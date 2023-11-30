@@ -216,7 +216,7 @@ const CreatePackage = () => {
                   <div key={spot.id} className="flex items-center space-x-2">
                     <input
                       {...register(`tourPlan.${dayIndex}.spots.${spotIndex}`)}
-                      className="appearance-none border bg-[#577a7d]  rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                      className="appearance-none border bg-[#577a7d] text-[#f7f5f2]   rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
                       type="text"
                       placeholder="Spots"
                       required

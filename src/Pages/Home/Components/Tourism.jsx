@@ -17,18 +17,20 @@ import vm from "../../../assets/videos/middle.mp4"
 
 
 const guidesData = [
-  {
+   {
     _id: "656634fa1136f8ec80c0667a",
     name: "Nevaan Ahmed",
     profile_image: "https://i.ibb.co/5nV25Bf/Nevaan-Ahmed.png",
     experience: "5 years"
     },
+
     {
     _id: "656634fa1136f8ec80c0667b",
     name: "Preyota Jannam",
     profile_image: "https://i.ibb.co/kgd3kHv/Preyota-Jannam.png",
      experience: "5 years"
     },
+
     {
     _id: "656634fa1136f8ec80c0667c",
     name: "Umong-Jai",
@@ -130,7 +132,7 @@ const Tourism = () => {
                 <p className="text-gray-500 mb-2">
                   Experience: {g?.experience}
                 </p>
-                <Link to={`/GuideDetails/${g._id}`}>
+                <Link to={`/GuideDetails/${g?._id}`}>
                   <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
                     Details
                   </button>

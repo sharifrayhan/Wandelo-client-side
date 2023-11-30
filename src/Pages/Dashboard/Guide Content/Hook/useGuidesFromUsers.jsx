@@ -9,7 +9,7 @@ const useGuidesFromUsers = () => {
     (user) => user?.role === "guide"
   );
 
-  console.log(filteredGuides)
+  // console.log(filteredGuides)
 
     // const axiosSecure = useAxiosSecure()
 //   const { data: allGuides, isLoading, error } = useQuery({
