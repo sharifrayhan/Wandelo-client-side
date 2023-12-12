@@ -16,12 +16,19 @@ import Hiking from "../Home/Components/TourTypes/Hiking";
 import Nature from "../Home/Components/TourTypes/Nature";
 import Wildlife from "../Home/Components/TourTypes/WildLife";
 import PrivateRoute from "./PrivateRoute";
+import Chatbox from "../Home/Components/Chatbox";
+
 
 
 const router = createBrowserRouter([
     {
       path: "/",
-      element: <Rootpage></Rootpage>,
+      element:(
+        <>
+          <Rootpage></Rootpage>
+          <Chatbox />
+        </>
+      ),
       errorElement: <Errorpage></Errorpage>,
       children: [
         {
