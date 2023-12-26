@@ -13,3 +13,17 @@ Image resources for Wandelo are hosted on [ImgBB](https://imgbb.com/).
 
 ## Project Live Link
 Explore Wandelo, book exciting packages, and make your travel dreams a reality: [Wandelo Live Site](https://wandelo-client-sharifrayhan.netlify.app)
+
+## How To Run Locally?
+
+After cloning the repository 
+1. **Install project dependencies:**
+
+   ```bash
+   npm install
+
+## Running the Project
+Start the development server and go to your local server from browser:
+   ```bash
+   npm run dev
+
